@@ -614,11 +614,12 @@ function EmailForm({ dark, label = "Join the Waitlist" }) {
     setStatus("loading");
   
     try {
-    const res = await fetch("/api/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
+      const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+      const res = await fetch(`${BACKEND_URL}/waitlist`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
 
     const data = await res.json();
 
