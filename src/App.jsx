@@ -996,18 +996,20 @@ export default function App() {
 
             {/* Crossed-out tools */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "7px", justifyContent: "center", marginTop: "28px" }}>
-              {["Shopify","Klaviyo","Stripe","HubSpot","Zendesk","Google Analytics","Zapier","QuickBooks"].map((t, i) => (
+              {["Shopify","Klaviyo","HubSpot","Zendesk","Google Analytics","Zapier","QuickBooks","Stripe (payment rail)"].map((t, i) => (
                 <div key={t} style={{
                   padding: "4px 11px", borderRadius: "6px",
                   border: `1px solid ${border}`,
                   background: dark ? "rgba(255,255,255,0.022)" : "rgba(0,0,0,0.022)",
                   fontSize: "11.5px", color: muted,
-                  textDecoration: i < 6 ? "line-through" : "none",
-                  opacity: i < 6 ? 0.42 : 1,
+                  textDecoration: i < 7 ? "line-through" : "none",
+                  opacity: i < 7 ? 0.42 : 1,
                 }}>{t}</div>
               ))}
             </div>
-            <div style={{ marginTop: "9px", fontSize: "11px", color: muted, opacity: 0.58 }}>↑ Replaced by Debby</div>
+            <div style={{ marginTop: "9px", fontSize: "11px", color: muted, opacity: 0.58 }}>
+              ↑ Replaced by Debby (Stripe remains a connected payment rail)
+            </div>
           </div>
         </Reveal>
       </section>
