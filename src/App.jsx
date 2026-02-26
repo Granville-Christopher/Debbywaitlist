@@ -25,18 +25,20 @@ function useWindowWidth() {
   return w;
 }
 
-// ─── Icons ────────────────────────────────────────────────────────────────────
+// ─── Icons ────────────────────────────────────────
+const SunIcon = ({ size = 20, color = "currentColor" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+  </svg>
+);
+
+const MoonIcon = ({ size = 20, color = "currentColor" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+);
+
 const icons = {
-  sun: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-    </svg>
-  ),
-  moon: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-    </svg>
-  ),
   arrow: (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
@@ -598,10 +600,10 @@ function MobileDevice({ dark }) {
 }
 
 // ─── Email Form ───────────────────────────────────────────────────────────────
-function EmailForm({ dark, label = "Join the Waitlist" }) {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle");
-  const [err, setErr] = useState("");
+function EmailForm({ dark, label = "Join the Waitlist", email, setEmail, status, setStatus, err, setErr }) {
+
+
+
   const valid = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
   const submit = async () => {
@@ -790,6 +792,10 @@ function SecPill({ icon, text, dark }) {
 export default function App() {
   const [dark, setDark] = useState(true);
   const [scrollY, setScrollY] = useState(0);
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [err, setErr] = useState("");
+  const waitlistProps = { email, setEmail, status, setStatus, err, setErr };
   const width = useWindowWidth();
   const isMobile = width < 768;
   const isTablet = width >= 768 && width < 1024;
@@ -860,11 +866,12 @@ export default function App() {
           <button onClick={() => setDark(d => !d)} style={{
             width: "35px", height: "35px", borderRadius: "8px",
             border: `1px solid ${border}`,
-            background: dark ? "rgba(255,255,255,0.055)" : "rgba(0,0,0,0.045)",
-            color: muted, cursor: "pointer",
+            background: dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)",
+            color: dark ? "#FACC15" : "#6366F1", cursor: "pointer",
             display: "flex", alignItems: "center", justifyContent: "center",
+            transition: "all 0.2s",
           }}>
-            {dark ? icons.sun : icons.moon}
+            {dark ? <SunIcon size={18} /> : <MoonIcon size={18} />}
           </button>
           <a href="#waitlist" style={{
             padding: isMobile ? "7px 15px" : "8px 19px",
@@ -931,7 +938,7 @@ export default function App() {
 
           {/* Form */}
           <div style={{ marginBottom: "13px" }}>
-            <EmailForm dark={dark} label="Join the Waitlist" />
+            <EmailForm dark={dark} label="Join the Waitlist" {...waitlistProps} />
           </div>
 
           {/* Secondary CTA */}
@@ -1168,7 +1175,7 @@ export default function App() {
               Join 4,200+ brands already on the Debby waitlist.
             </p>
             <div style={{ marginBottom: "13px" }}>
-              <EmailForm dark={dark} label="Join the Waitlist" />
+              <EmailForm dark={dark} label="Join the Waitlist" {...waitlistProps} />
             </div>
             <p style={{ fontSize: "11px", color: muted, opacity: 0.6 }}>
               Early businesses receive priority onboarding and founding member benefits.
