@@ -17,14 +17,15 @@ export default async function handler(req, res) {
     to: "granvillechris.dev@gmail.com",
     from: "support@stratiumctb.com", // MUST be verified in SendGrid
     subject: "New Debby Waitlist Signup",
-    text: `New waitlist signup:\n\nEmail: ${email}`,
+    text: `New signup email: ${email}`,
+    html: `<strong>New signup email:</strong> ${email}`,
   };
 
   try {
     await sgMail.send(msg);
     return res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
-    console.error(error.response?.body || error);
+    console.error(error);
     return res.status(500).json({ message: "Failed to send email" });
   }
 }
