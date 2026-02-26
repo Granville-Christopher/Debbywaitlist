@@ -605,10 +605,33 @@ function EmailForm({ dark, label = "Join the Waitlist" }) {
   const valid = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
   const submit = async () => {
-    if (!valid(email)) { setErr("Enter a valid email address."); return; }
-    setErr(""); setStatus("loading");
-    await new Promise(r => setTimeout(r, 1400));
+    if (!valid(email)) {
+      setErr("Enter a valid email address.");
+      return;
+    }
+  
+    setErr("");
+    setStatus("loading");
+  
+    try {
+    const res = await fetch("/api/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || "Failed to send");
+    }
+
     setStatus("success");
+    setEmail("");
+    } catch (error) {
+    setErr("Something went wrong. Please try again.");
+    setStatus("idle");
+    }
   };
 
   if (status === "success") return (
