@@ -505,7 +505,7 @@ function PhoneFrame({ small = false }) {
 }
 
 // ─── Desktop Hero Device Scene ────────────────────────────────────────────────
-function DesktopDevices({ dark }) {
+function DesktopDevices({ dark, large = false }) {
   const [off, setOff] = useState(0);
   useEffect(() => {
     let raf, t = 0;
@@ -514,36 +514,44 @@ function DesktopDevices({ dark }) {
     return () => cancelAnimationFrame(raf);
   }, []);
 
+  const sceneHeight = large ? 390 : 320;
+  const glowWidth = large ? 320 : 240;
+  const glowHeight = large ? 210 : 160;
+
   return (
-    <div style={{ position: "relative", width: "100%", height: "320px", overflow: "visible" }}>
+    <div style={{ position: "relative", width: "100%", height: `${sceneHeight}px`, overflow: "visible" }}>
       {/* Ambient glow */}
       <div style={{
-        position: "absolute", top: "38%", left: "42%",
+        position: "absolute", top: large ? "36%" : "38%", left: large ? "44%" : "42%",
         transform: "translate(-50%,-50%)",
-        width: "240px", height: "160px",
+        width: `${glowWidth}px`, height: `${glowHeight}px`,
         background: "radial-gradient(ellipse,rgba(37,99,235,0.2) 0%,transparent 70%)",
-        filter: "blur(26px)", pointerEvents: "none",
+        filter: `blur(${large ? 34 : 26}px)`, pointerEvents: "none",
       }} />
       {/* Tablet — behind, left */}
       <div style={{
-        position: "absolute", left: 0, top: `${8 + off * 0.55}px`,
-        transform: "perspective(900px) rotateY(7deg) rotateX(2deg)", zIndex: 1,
+        position: "absolute", left: large ? "12px" : 0, top: `${(large ? 22 : 8) + off * 0.55}px`,
+        transform: `${large ? "scale(1.08) " : ""}perspective(900px) rotateY(7deg) rotateX(2deg)`,
+        transformOrigin: "left center",
+        zIndex: 1,
       }}>
         <TabletFrame />
       </div>
       {/* Phone — front, right */}
       <div style={{
-        position: "absolute", right: "8px", top: `${off * -0.9}px`,
-        transform: "perspective(900px) rotateY(-5deg) rotateX(2deg)", zIndex: 2,
+        position: "absolute", right: large ? "20px" : "8px", top: `${(large ? 16 : 0) + off * -0.9}px`,
+        transform: `${large ? "scale(1.1) " : ""}perspective(900px) rotateY(-5deg) rotateX(2deg)`,
+        transformOrigin: "right center",
+        zIndex: 2,
       }}>
         <PhoneFrame />
       </div>
       {/* Badge */}
       <div style={{
-        position: "absolute", bottom: "-8px", left: "118px",
+        position: "absolute", bottom: large ? "6px" : "-8px", left: large ? "132px" : "118px",
         background: dark ? "rgba(12,20,38,0.97)" : "rgba(255,255,255,0.97)",
         border: `1px solid ${dark ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.07)"}`,
-        borderRadius: "10px", padding: "7px 13px",
+        borderRadius: "10px", padding: large ? "8px 14px" : "7px 13px",
         backdropFilter: "blur(20px)",
         boxShadow: "0 6px 24px rgba(0,0,0,0.16)",
         zIndex: 10, transform: `translateY(${off * 0.35}px)`,
@@ -799,6 +807,7 @@ export default function App() {
   const width = useWindowWidth();
   const isMobile = width < 768;
   const isTablet = width >= 768 && width < 1024;
+  const isDesktop = width >= 1024;
 
   useEffect(() => {
     const h = () => setScrollY(window.scrollY);
@@ -895,18 +904,208 @@ export default function App() {
       </nav>
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section style={{
-        maxWidth: "1160px", margin: "0 auto",
+      {isDesktop ? (
+<section style={{
+  position: "relative",
+  maxWidth: "1280px",
+  margin: "0 auto",
+  padding: "118px 52px 94px",
+}}>
+  <div
+    aria-hidden
+    style={{
+      position: "absolute",
+      inset: "36px 26px 20px",
+      borderRadius: "32px",
+      border: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.08)"}`,
+      background: dark
+        ? "linear-gradient(160deg,rgba(10,14,24,0.92),rgba(12,18,30,0.8))"
+        : "linear-gradient(160deg,rgba(255,255,255,0.96),rgba(248,250,252,0.98))",
+      boxShadow: dark
+        ? "0 30px 78px rgba(2,6,23,0.52)"
+        : "0 24px 64px rgba(15,23,42,0.14)",
+      pointerEvents: "none",
+    }}
+  />
+
+  <div style={{
+    position: "relative",
+    zIndex: 1,
+    display: "grid",
+    gridTemplateColumns: "1fr 0.94fr",
+    gap: "72px",
+    alignItems: "center",
+  }}>
+    <div style={{
+      animation: "fadeUp 0.62s ease forwards",
+      minWidth: 0,
+    }}>
+      <div style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "8px",
+        marginBottom: "24px",
+        width: "fit-content",
+        padding: "6px 14px",
+        borderRadius: "999px",
+        border: "1px solid rgba(37,99,235,0.24)",
+        background: dark ? "rgba(37,99,235,0.12)" : "rgba(37,99,235,0.08)",
+      }}>
+        <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#22C55E", animation: "pulse 2s infinite" }} />
+        <span style={{ fontSize: "10.5px", fontWeight: 700, color: "#2563EB", letterSpacing: "0.08em" }}>
+          DEBBY EARLY ACCESS
+        </span>
+      </div>
+
+      <h1 style={{
+        fontFamily: "'Fraunces', serif",
+        fontWeight: 700,
+        fontSize: "64px",
+        lineHeight: 1.01,
+        letterSpacing: "-0.04em",
+        color: text,
+        marginBottom: "18px",
+        maxWidth: "660px",
+      }}>
+        A Cleaner Core
+        <br />
+        <span style={{
+          background: "linear-gradient(135deg,#1D4ED8,#60A5FA)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}>
+          for Modern Commerce.
+        </span>
+      </h1>
+
+      <p style={{
+        fontSize: "16px",
+        lineHeight: 1.85,
+        color: muted,
+        maxWidth: "590px",
+        marginBottom: "24px",
+      }}>
+        Debby unifies storefront, CRM, billing, and automation into one elegant operational system built for precision, speed, and scale.
+      </p>
+
+      <div style={{
+        borderRadius: "16px",
+        border: `1px solid ${dark ? "rgba(255,255,255,0.1)" : "rgba(15,23,42,0.1)"}`,
+        background: dark ? "rgba(255,255,255,0.022)" : "rgba(255,255,255,0.92)",
+        boxShadow: dark ? "0 14px 34px rgba(2,6,23,0.4)" : "0 10px 26px rgba(15,23,42,0.12)",
+        padding: "16px",
+        marginBottom: "16px",
+      }}>
+        <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em", color: "#3B82F6", textTransform: "uppercase", marginBottom: "10px" }}>
+          Join The Waitlist
+        </p>
+        <EmailForm dark={dark} label="Join the Waitlist" {...waitlistProps} />
+      </div>
+
+      <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "18px" }}>
+        <a href="#early-access" style={{
+          display: "inline-flex", alignItems: "center", gap: "7px",
+          padding: "10px 16px", borderRadius: "10px",
+          border: `1.5px solid ${border}`,
+          color: muted,
+          textDecoration: "none",
+          fontSize: "12.5px",
+          fontWeight: 600,
+          background: dark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)",
+        }}>
+          {icons.arrow} Request Early Access Details
+        </a>
+        <span style={{ fontSize: "12px", color: muted }}>No spam. Product updates only.</span>
+      </div>
+
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3,minmax(0,1fr))",
+        gap: "10px",
+      }}>
+        {[['4,200+','Brands waiting'],['$2.1B+','Projected GMV'],['47','Countries']].map(([stat, lbl]) => (
+          <div key={stat} style={{
+            padding: "13px 14px",
+            borderRadius: "12px",
+            border: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.08)"}`,
+            background: dark ? "rgba(255,255,255,0.016)" : "rgba(255,255,255,0.86)",
+          }}>
+            <div style={{ fontWeight: 800, fontSize: "24px", color: text, fontFamily: "'Fraunces',serif", letterSpacing: "-0.02em" }}>{stat}</div>
+            <div style={{ fontSize: "11px", color: muted, marginTop: "2px", letterSpacing: "0.02em" }}>{lbl}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div style={{
+      animation: "fadeUp 0.7s ease 0.14s both",
+      position: "relative",
+      borderRadius: "24px",
+      border: `1px solid ${dark ? "rgba(255,255,255,0.1)" : "rgba(15,23,42,0.08)"}`,
+      background: dark
+        ? "linear-gradient(170deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))"
+        : "linear-gradient(170deg,rgba(255,255,255,0.98),rgba(248,250,252,0.94))",
+      boxShadow: dark ? "0 22px 58px rgba(2,6,23,0.46)" : "0 18px 44px rgba(15,23,42,0.14)",
+      padding: "30px 24px 22px",
+      overflow: "hidden",
+    }}>
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          right: "-42px",
+          top: "-30px",
+          width: "220px",
+          height: "220px",
+          background: "radial-gradient(circle,rgba(59,130,246,0.24) 0%,transparent 72%)",
+          filter: "blur(12px)",
+          pointerEvents: "none",
+        }}
+      />
+      <DesktopDevices dark={dark} large />
+      <p style={{
+        marginTop: "8px",
+        textAlign: "center",
+        fontSize: "11px",
+        letterSpacing: "0.06em",
+        textTransform: "uppercase",
+        color: muted,
+      }}>
+        Unified storefront, CRM, billing, and automation
+      </p>
+    </div>
+  </div>
+</section>
+) : (
+<section style={{
+        position: "relative",
+        maxWidth: isDesktop ? "1240px" : "1160px", margin: "0 auto",
         padding: isMobile
           ? "82px 20px 52px"
-          : isTablet ? "92px 28px 64px" : "106px 44px 80px",
+          : isTablet ? "92px 28px 64px" : "112px 44px 86px",
         display: "grid",
-        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-        gap: isMobile ? "44px" : "48px",
+        gridTemplateColumns: isMobile ? "1fr" : isDesktop ? "1.04fr 0.96fr" : "1fr 1fr",
+        gap: isMobile ? "44px" : isDesktop ? "64px" : "48px",
         alignItems: "center",
       }}>
+        {!isMobile && (
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: isDesktop ? "34px 16px 18px" : "16px 8px 12px",
+              borderRadius: isDesktop ? "26px" : "18px",
+              border: `1px solid ${dark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.06)"}`,
+              background: dark
+                ? "linear-gradient(135deg,rgba(37,99,235,0.08),rgba(255,255,255,0.015))"
+                : "linear-gradient(135deg,rgba(219,234,254,0.45),rgba(255,255,255,0.88))",
+              boxShadow: isDesktop ? "0 20px 48px rgba(2,6,23,0.14)" : "0 10px 28px rgba(2,6,23,0.1)",
+              pointerEvents: "none",
+            }}
+          />
+        )}
         {/* — Text — */}
-        <div style={{ animation: "fadeUp 0.7s ease forwards", textAlign: isMobile ? "center" : "left" }}>
+        <div style={{ position: "relative", zIndex: 1, animation: "fadeUp 0.7s ease forwards", textAlign: isMobile ? "center" : "left" }}>
 
           {/* Live badge */}
           <div style={{
@@ -923,8 +1122,8 @@ export default function App() {
           {/* H1 */}
           <h1 style={{
             fontFamily: "'Fraunces', serif", fontWeight: 700,
-            fontSize: isMobile ? "30px" : isTablet ? "38px" : "50px",
-            lineHeight: 1.09, letterSpacing: "-0.03em",
+            fontSize: isMobile ? "30px" : isTablet ? "38px" : "58px",
+            lineHeight: isDesktop ? 1.03 : 1.09, letterSpacing: isDesktop ? "-0.034em" : "-0.03em",
             color: text, marginBottom: "16px",
           }}>
             The Operating System
@@ -936,9 +1135,9 @@ export default function App() {
 
           {/* Sub */}
           <p style={{
-            fontSize: isMobile ? "13.5px" : "15px",
+            fontSize: isMobile ? "13.5px" : isDesktop ? "16px" : "15px",
             lineHeight: 1.74, color: muted,
-            maxWidth: "490px",
+            maxWidth: isDesktop ? "560px" : "490px",
             margin: isMobile ? "0 auto 26px" : "0 0 26px",
           }}>
             Debby unifies storefronts, CRM, billing, automation, and analytics into one powerful infrastructure layer. Stop stacking tools. Start owning your operations.
@@ -964,13 +1163,28 @@ export default function App() {
 
           {/* Stats */}
           <div style={{
-            marginTop: "30px", display: "flex", gap: "24px", flexWrap: "wrap",
+            marginTop: isDesktop ? "34px" : "30px",
+            display: isDesktop ? "grid" : "flex",
+            gridTemplateColumns: isDesktop ? "repeat(3,minmax(0,1fr))" : undefined,
+            gap: isDesktop ? "10px" : "24px",
+            flexWrap: isDesktop ? undefined : "wrap",
             justifyContent: isMobile ? "center" : "flex-start",
-            paddingTop: "26px", borderTop: `1px solid ${border}`,
+            paddingTop: isDesktop ? 0 : "26px",
+            borderTop: isDesktop ? "none" : `1px solid ${border}`,
           }}>
             {[["4,200+","Brands on waitlist"],["$2.1B+","GMV targeted"],["47","Countries"]].map(([stat, lbl]) => (
-              <div key={stat} style={{ textAlign: isMobile ? "center" : "left" }}>
-                <div style={{ fontWeight: 800, fontSize: "19px", color: text, fontFamily: "'Fraunces',serif", letterSpacing: "-0.02em" }}>{stat}</div>
+              <div key={stat} style={{
+                textAlign: isMobile ? "center" : "left",
+                ...(isDesktop
+                  ? {
+                      padding: "12px 14px",
+                      borderRadius: "12px",
+                      border: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}`,
+                      background: dark ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.86)",
+                    }
+                  : {}),
+              }}>
+                <div style={{ fontWeight: 800, fontSize: isDesktop ? "24px" : "19px", color: text, fontFamily: "'Fraunces',serif", letterSpacing: "-0.02em" }}>{stat}</div>
                 <div style={{ fontSize: "11px", color: muted, marginTop: "2px", letterSpacing: "0.02em" }}>{lbl}</div>
               </div>
             ))}
@@ -978,13 +1192,27 @@ export default function App() {
         </div>
 
         {/* — Devices — on mobile this stacks below the text */}
-        <div style={{ animation: "fadeUp 0.7s ease 0.16s both" }}>
+        <div style={{
+          position: "relative",
+          zIndex: 1,
+          animation: "fadeUp 0.7s ease 0.16s both",
+          ...(isDesktop
+            ? {
+                padding: "22px 18px 16px",
+                borderRadius: "20px",
+                border: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.07)"}`,
+                background: dark ? "rgba(255,255,255,0.015)" : "rgba(255,255,255,0.92)",
+                boxShadow: "0 16px 36px rgba(2,6,23,0.14)",
+              }
+            : {}),
+        }}>
           {isMobile
             ? <MobileDevice dark={dark} />
-            : <DesktopDevices dark={dark} />
+            : <DesktopDevices dark={dark} large={isDesktop} />
           }
         </div>
       </section>
+)}
 
       {/* ── PROBLEM ──────────────────────────────────────────────────────── */}
       <section style={{
@@ -1220,3 +1448,6 @@ export default function App() {
     </div>
   );
 }
+
+
+
