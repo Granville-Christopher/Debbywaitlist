@@ -862,16 +862,23 @@ export default function App() {
           )}
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <button onClick={() => setDark(d => !d)} style={{
-            width: "35px", height: "35px", borderRadius: "8px",
-            border: `1px solid ${border}`,
-            background: dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)",
-            color: dark ? "#FACC15" : "#6366F1", cursor: "pointer",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            transition: "all 0.2s",
-          }}>
-            {dark ? <SunIcon size={18} /> : <MoonIcon size={18} />}
+        <div style={{ display: "flex", alignItems: "center", gap: isMobile ? "8px" : "10px", flexShrink: 0 }}>
+          <button
+            onClick={() => setDark(d => !d)}
+            aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+            title={dark ? "Switch to light mode" : "Switch to dark mode"}
+            style={{
+              width: "36px", height: "36px", minWidth: "36px", minHeight: "36px", borderRadius: "9px",
+              border: dark ? "1px solid rgba(250,204,21,0.38)" : "1px solid rgba(79,70,229,0.34)",
+              background: dark ? "rgba(250,204,21,0.12)" : "rgba(79,70,229,0.1)",
+              color: dark ? "#FACC15" : "#4F46E5", cursor: "pointer",
+              display: "inline-flex", alignItems: "center", justifyContent: "center",
+              boxShadow: dark ? "0 2px 8px rgba(250,204,21,0.18)" : "0 2px 8px rgba(79,70,229,0.16)",
+              flexShrink: 0,
+              transition: "all 0.2s",
+            }}
+          >
+            {dark ? <SunIcon size={18} color="#FACC15" /> : <MoonIcon size={18} color="#4F46E5" />}
           </button>
           <a href="#waitlist" style={{
             padding: isMobile ? "7px 15px" : "8px 19px",
@@ -880,6 +887,7 @@ export default function App() {
             color: "#fff", fontWeight: 700, fontSize: isMobile ? "12.5px" : "13.5px",
             textDecoration: "none",
             boxShadow: "0 3px 10px rgba(37,99,235,0.3)",
+            whiteSpace: "nowrap",
           }}>
             Join Waitlist
           </a>
