@@ -79,6 +79,26 @@ const icons = {
       <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
     </svg>
   ),
+  message: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+    </svg>
+  ),
+  refresh: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.13-3.36L23 10M1 14l5.36 4.36A9 9 0 0 0 20.49 15"/>
+    </svg>
+  ),
+  truck: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+    </svg>
+  ),
+  mail: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,7 12,13 2,7"/>
+    </svg>
+  ),
   globe: (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
@@ -820,14 +840,50 @@ export default function App() {
   const muted = dark ? "#8B949E" : "#57606A";
   const border = dark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)";
   const px = isMobile ? "20px" : isTablet ? "28px" : "44px";
+  const fragmentedTools = [
+    { name: "Shopify", logo: "https://cdn.simpleicons.org/shopify/95BF47", mode: "replaced" },
+    { name: "Klaviyo", logo: "https://cdn.simpleicons.org/klaviyo/000000", mode: "replaced" },
+    { name: "HubSpot", logo: "https://cdn.simpleicons.org/hubspot/FF7A59", mode: "replaced" },
+    { name: "Zendesk", logo: "https://cdn.simpleicons.org/zendesk/03363D", mode: "replaced" },
+    { name: "Google Analytics", logo: "https://cdn.simpleicons.org/googleanalytics/E37400", mode: "replaced" },
+    { name: "Zapier", logo: "https://cdn.simpleicons.org/zapier/FF4A00", mode: "replaced" },
+    { name: "QuickBooks", logo: "https://cdn.simpleicons.org/quickbooks/2CA01C", mode: "replaced" },
+    { name: "Stripe", logo: "https://cdn.simpleicons.org/stripe/635BFF", mode: "rail" },
+  ];
+  const operationsEvents = [
+    { icon: icons.store, text: "Order #4821 placed", detail: "Sneaker Drop x2", time: "Just now", accent: "#2563EB" },
+    { icon: icons.billing, text: "Payment confirmed", detail: "$247.00 via Stripe", time: "12s ago", accent: "#059669" },
+    { icon: icons.message, text: "Reminder sent", detail: "Abandoned cart follow-up", time: "45s ago", accent: "#D97706" },
+    { icon: icons.refresh, text: "Cart recovered", detail: "$89.00 order restored", time: "1m ago", accent: "#4F46E5" },
+    { icon: icons.truck, text: "Delivery update sent", detail: "Order #4819 out for delivery", time: "2m ago", accent: "#0891B2" },
+    { icon: icons.mail, text: "Welcome flow triggered", detail: "New subscriber onboarded", time: "3m ago", accent: "#7C3AED" },
+  ];
+  const [opsStreamRef, opsStreamInView] = useInView(0.24);
+  const [visibleOpsEvents, setVisibleOpsEvents] = useState(0);
+
+  useEffect(() => {
+    if (!opsStreamInView) return;
+    setVisibleOpsEvents(0);
+    const timer = setInterval(() => {
+      setVisibleOpsEvents((count) => {
+        if (count >= operationsEvents.length) {
+          clearInterval(timer);
+          return count;
+        }
+        return count + 1;
+      });
+    }, 520);
+    return () => clearInterval(timer);
+  }, [opsStreamInView]);
 
   return (
     <div style={{ background: bg, color: text, fontFamily: "'DM Sans', sans-serif", minHeight: "100vh", overflowX: "hidden" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900&family=Orbitron:wght@700;800;900&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.42} }
+        @keyframes logoPing { 75%,100% { transform: scale(1.75); opacity: 0; } }
         @keyframes fadeUp { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:translateY(0)} }
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: rgba(37,99,235,0.32); border-radius: 3px; }
@@ -852,24 +908,46 @@ export default function App() {
         height: isMobile ? "56px" : "62px",
       }}>
         {/* Logo */}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <div style={{
-            width: "29px", height: "29px", borderRadius: "7px",
-            background: "linear-gradient(135deg,#1E3A8A,#3B82F6)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            boxShadow: "0 3px 9px rgba(37,99,235,0.36)",
-          }}>
-            <span style={{ color: "#fff", fontWeight: 900, fontSize: "12px", fontFamily: "'Fraunces',serif" }}>D</span>
+        <a href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
+          <div style={{ position: "relative", width: "40px", height: "40px" }}>
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to bottom right,#3B82F6,#7C3AED)",
+              borderRadius: "12px",
+              opacity: 0.2,
+              animation: "logoPing 1s cubic-bezier(0,0,0.2,1) infinite",
+            }} />
+            <div style={{
+              position: "relative",
+              width: "40px",
+              height: "40px",
+              background: "linear-gradient(to bottom right,#3B82F6,#6366F1,#7C3AED)",
+              borderRadius: "12px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 10px 24px rgba(59,130,246,0.32)",
+            }}>
+              <span style={{ color: "#fff", fontWeight: 900, fontSize: "18px", fontFamily: "'Orbitron', sans-serif" }}>D</span>
+            </div>
           </div>
-          <span style={{ fontWeight: 800, fontSize: "16.5px", letterSpacing: "-0.025em", color: text }}>debby</span>
-          {!isMobile && (
-            <span style={{
-              fontSize: "9px", fontWeight: 700, letterSpacing: "0.08em",
-              color: "#2563EB", background: "rgba(37,99,235,0.09)",
-              border: "1px solid rgba(37,99,235,0.2)", padding: "2px 7px", borderRadius: "20px",
-            }}>BETA</span>
-          )}
-        </div>
+          <span
+            style={{
+              fontSize: "24px",
+              fontWeight: 900,
+              letterSpacing: "0.15em",
+              fontFamily: "'Orbitron', sans-serif",
+              background: "linear-gradient(to right,#2563EB,#6366F1,#7C3AED)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.12))",
+              lineHeight: 1,
+            }}
+          >
+            DEBBY
+          </span>
+        </a>
 
         <div style={{ display: "flex", alignItems: "center", gap: isMobile ? "8px" : "10px", flexShrink: 0 }}>
           <button
@@ -1214,6 +1292,107 @@ export default function App() {
       </section>
 )}
 
+      {/* LIVE OPS STREAM */}
+      <section style={{
+        padding: isMobile ? "56px 20px" : "74px 44px",
+        background: dark
+          ? "linear-gradient(160deg,rgba(255,255,255,0.012),rgba(37,99,235,0.04),rgba(255,255,255,0.008))"
+          : "linear-gradient(160deg,rgba(255,255,255,0.95),rgba(219,234,254,0.44),rgba(255,255,255,0.96))",
+        borderTop: `1px solid ${border}`,
+        borderBottom: `1px solid ${border}`,
+      }}>
+        <div style={{ maxWidth: "760px", margin: "0 auto" }}>
+          <Reveal style={{ textAlign: "center", marginBottom: "28px" }}>
+            <Label text="Operations Stream" />
+            <SectionH2 isMobile={isMobile}>Your operations, streaming live.</SectionH2>
+            <p style={{
+              fontSize: isMobile ? "13px" : "14.5px",
+              lineHeight: 1.72,
+              color: muted,
+              maxWidth: "560px",
+              margin: "0 auto",
+            }}>
+              Watch your events move automatically from checkout to fulfillment in one timeline.
+            </p>
+          </Reveal>
+
+          <div
+            ref={opsStreamRef}
+            style={{
+              display: "grid",
+              gap: "10px",
+              maxWidth: isMobile ? "100%" : "640px",
+              margin: "0 auto",
+            }}
+          >
+            {operationsEvents.slice(0, visibleOpsEvents).map((event, index) => (
+              <div
+                key={`${event.text}-${index}`}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                  padding: isMobile ? "12px" : "13px 14px",
+                  borderRadius: "12px",
+                  border: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.08)"}`,
+                  background: dark ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.84)",
+                  boxShadow: dark ? "0 10px 24px rgba(2,6,23,0.28)" : "0 8px 20px rgba(2,6,23,0.08)",
+                  animation: `fadeUp 0.45s ease ${index * 50}ms both`,
+                }}
+              >
+                <div style={{
+                  width: "32px",
+                  height: "32px",
+                  minWidth: "32px",
+                  borderRadius: "9px",
+                  background: dark ? "rgba(255,255,255,0.06)" : "rgba(241,245,249,0.9)",
+                  border: `1px solid ${dark ? "rgba(255,255,255,0.1)" : "rgba(15,23,42,0.08)"}`,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: event.accent,
+                }}>
+                  {event.icon}
+                </div>
+                <div style={{ flex: 1, minWidth: 0, textAlign: "left" }}>
+                  <p style={{
+                    fontSize: isMobile ? "12.5px" : "13.5px",
+                    fontWeight: 700,
+                    color: text,
+                    lineHeight: 1.35,
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}>
+                    {event.text}
+                  </p>
+                  <p style={{
+                    marginTop: "1px",
+                    fontSize: "11px",
+                    color: muted,
+                    lineHeight: 1.35,
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}>
+                    {event.detail}
+                  </p>
+                </div>
+                <span style={{
+                  fontSize: "10px",
+                  color: muted,
+                  letterSpacing: "0.02em",
+                  whiteSpace: "nowrap",
+                  flexShrink: 0,
+                }}>
+                  {event.time}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── PROBLEM ──────────────────────────────────────────────────────── */}
       <section style={{
         borderTop: `1px solid ${border}`, borderBottom: `1px solid ${border}`,
@@ -1237,21 +1416,129 @@ export default function App() {
               Debby replaces scattered tools with one unified commerce infrastructure.
             </div>
 
-            {/* Crossed-out tools */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "7px", justifyContent: "center", marginTop: "28px" }}>
-              {["Shopify","Klaviyo","HubSpot","Zendesk","Google Analytics","Zapier","QuickBooks","Stripe (payment rail)"].map((t, i) => (
-                <div key={t} style={{
-                  padding: "4px 11px", borderRadius: "6px",
-                  border: `1px solid ${border}`,
-                  background: dark ? "rgba(255,255,255,0.022)" : "rgba(0,0,0,0.022)",
-                  fontSize: "11.5px", color: muted,
-                  textDecoration: i < 7 ? "line-through" : "none",
-                  opacity: i < 7 ? 0.42 : 1,
-                }}>{t}</div>
-              ))}
+            {/* Premium tools stack */}
+            <div style={{
+              marginTop: "30px",
+              padding: isMobile ? "14px" : "16px",
+              borderRadius: "14px",
+              border: `1px solid ${dark ? "rgba(255,255,255,0.09)" : "rgba(15,23,42,0.1)"}`,
+              background: dark
+                ? "linear-gradient(145deg,rgba(255,255,255,0.025),rgba(255,255,255,0.01))"
+                : "linear-gradient(145deg,rgba(255,255,255,0.94),rgba(248,250,252,0.88))",
+              boxShadow: dark ? "0 12px 30px rgba(2,6,23,0.34)" : "0 10px 28px rgba(2,6,23,0.08)",
+            }}>
+              <div style={{
+                fontSize: "11px",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: muted,
+                marginBottom: "12px",
+                textAlign: "left",
+              }}>
+                Typical stack brands outgrow
+              </div>
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: isMobile ? "1fr" : "repeat(2,minmax(0,1fr))",
+                gap: "9px",
+              }}>
+                {fragmentedTools.map((tool) => (
+                  <div key={tool.name} style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    minHeight: "50px",
+                    padding: "9px 10px",
+                    borderRadius: "10px",
+                    border: `1px solid ${dark ? "rgba(255,255,255,0.07)" : "rgba(15,23,42,0.08)"}`,
+                    background: dark ? "rgba(255,255,255,0.018)" : "rgba(255,255,255,0.75)",
+                  }}>
+                    <div style={{
+                      position: "relative",
+                      width: "24px",
+                      height: "24px",
+                      borderRadius: "7px",
+                      border: `1px solid ${dark ? "rgba(255,255,255,0.1)" : "rgba(15,23,42,0.1)"}`,
+                      background: dark ? "rgba(255,255,255,0.055)" : "rgba(241,245,249,0.95)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}>
+                      <img
+                        src={tool.logo}
+                        alt={tool.name}
+                        width="13"
+                        height="13"
+                        style={{ display: "block" }}
+                        loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                          const fallback = e.currentTarget.nextSibling;
+                          if (fallback) fallback.style.display = "flex";
+                        }}
+                      />
+                      <div style={{
+                        display: "none",
+                        width: "13px",
+                        height: "13px",
+                        fontSize: "8px",
+                        fontWeight: 700,
+                        color: muted,
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}>
+                        {tool.name.charAt(0)}
+                      </div>
+                    </div>
+                    <div style={{ minWidth: 0, textAlign: "left" }}>
+                      <div style={{
+                        fontSize: "12.5px",
+                        fontWeight: 600,
+                        color: text,
+                        lineHeight: 1.25,
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}>
+                        {tool.name}
+                      </div>
+                      <div style={{
+                        fontSize: "10.5px",
+                        color: muted,
+                        lineHeight: 1.35,
+                        marginTop: "2px",
+                      }}>
+                        {tool.mode === "replaced" ? "Consolidated in Debby" : "Connected as payment rail"}
+                      </div>
+                    </div>
+                    <span style={{
+                      marginLeft: "auto",
+                      fontSize: "9.5px",
+                      fontWeight: 700,
+                      letterSpacing: "0.04em",
+                      textTransform: "uppercase",
+                      padding: "4px 7px",
+                      borderRadius: "999px",
+                      border: `1px solid ${
+                        tool.mode === "replaced"
+                          ? "rgba(37,99,235,0.24)"
+                          : "rgba(124,58,237,0.24)"
+                      }`,
+                      color: tool.mode === "replaced" ? "#2563EB" : "#7C3AED",
+                      background: tool.mode === "replaced"
+                        ? "rgba(37,99,235,0.09)"
+                        : "rgba(124,58,237,0.09)",
+                      flexShrink: 0,
+                    }}>
+                      {tool.mode === "replaced" ? "Unified" : "Rail"}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div style={{ marginTop: "9px", fontSize: "11px", color: muted, opacity: 0.58 }}>
-              ↑ Replaced by Debby (Stripe remains a connected payment rail)
+            <div style={{ marginTop: "10px", fontSize: "11px", color: muted, opacity: 0.62 }}>
+              Debby replaces fragmented tools while Stripe remains a connected payment rail.
             </div>
           </div>
         </Reveal>
@@ -1448,6 +1735,7 @@ export default function App() {
     </div>
   );
 }
+
 
 
 
