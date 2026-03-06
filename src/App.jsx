@@ -909,32 +909,32 @@ export default function App() {
       }}>
         {/* Logo */}
         <a href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
-          <div style={{ position: "relative", width: "40px", height: "40px" }}>
+          <div style={{ position: "relative", width: isMobile ? "32px" : "40px", height: isMobile ? "32px" : "40px" }}>
             <div style={{
               position: "absolute",
               inset: 0,
               background: "linear-gradient(to bottom right,#3B82F6,#7C3AED)",
-              borderRadius: "12px",
+              borderRadius: isMobile ? "10px" : "12px",
               opacity: 0.2,
               animation: "logoPing 1s cubic-bezier(0,0,0.2,1) infinite",
             }} />
             <div style={{
               position: "relative",
-              width: "40px",
-              height: "40px",
+              width: isMobile ? "32px" : "40px",
+              height: isMobile ? "32px" : "40px",
               background: "linear-gradient(to bottom right,#3B82F6,#6366F1,#7C3AED)",
-              borderRadius: "12px",
+              borderRadius: isMobile ? "10px" : "12px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               boxShadow: "0 10px 24px rgba(59,130,246,0.32)",
             }}>
-              <span style={{ color: "#fff", fontWeight: 900, fontSize: "18px", fontFamily: "'Orbitron', sans-serif" }}>D</span>
+              <span style={{ color: "#fff", fontWeight: 900, fontSize: isMobile ? "14px" : "18px", fontFamily: "'Orbitron', sans-serif" }}>D</span>
             </div>
           </div>
           <span
             style={{
-              fontSize: "24px",
+              fontSize: isMobile ? "18px" : "24px",
               fontWeight: 900,
               letterSpacing: "0.15em",
               fontFamily: "'Orbitron', sans-serif",
