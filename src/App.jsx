@@ -1106,7 +1106,7 @@ export default function App() {
         <span style={{ fontSize: "10px" }}>✦</span>
       </div>
       <span style={{ fontSize: "12px", fontWeight: 700, color: "#2563EB", letterSpacing: "0.06em" }}>
-        EARLY ACCESS · 4,200+ BRANDS WAITING
+        EARLY ACCESS · 100+ BRANDS WAITING
       </span>
     </div>
 
@@ -1209,7 +1209,7 @@ export default function App() {
     animation: "slideUp 0.7s ease forwards",
     opacity: 0, animationDelay: "0.95s", animationFillMode: "forwards",
   }}>
-    {[['4,200+','Brands on waitlist'],['$2.1B+','Projected GMV'],['47','Countries ready']].map(([stat, lbl], i) => (
+    {[['100+','Brands on waitlist'],['$2.1B+','Projected GMV'],['47','Countries ready']].map(([stat, lbl], i) => (
       <div key={stat} style={{
         padding: "16px 28px",
         borderRadius: "14px",
@@ -1273,7 +1273,7 @@ export default function App() {
               <span style={{ fontSize: "8px" }}>✦</span>
             </div>
             <span style={{ fontSize: "10px", fontWeight: 700, color: "#3B82F6", letterSpacing: "0.04em" }}>
-              {isMobile ? "EARLY ACCESS" : "EARLY ACCESS · 4,200+ BRANDS"}
+              {isMobile ? "EARLY ACCESS" : "EARLY ACCESS · 100+ BRANDS"}
             </span>
           </div>
 
@@ -1365,7 +1365,7 @@ export default function App() {
           animation: "slideUp 0.7s ease forwards",
           opacity: 0, animationDelay: "0.95s", animationFillMode: "forwards",
         }}>
-          {[["4,200+","Brands waiting"],["$2.1B+","GMV targeted"],["47","Countries"]].map(([stat, lbl]) => (
+          {[["100+","Brands waiting"],["$2.1B+","GMV targeted"],["47","Countries"]].map(([stat, lbl]) => (
             <div key={stat} style={{ textAlign: "center", minWidth: isMobile ? "80px" : "auto" }}>
               <div style={{ fontWeight: 800, fontSize: isMobile ? "18px" : "21px", color: text, fontFamily: "'Fraunces',serif", letterSpacing: "-0.02em" }}>{stat}</div>
               <div style={{ fontSize: "11px", color: muted, marginTop: "2px", letterSpacing: "0.02em" }}>{lbl}</div>
@@ -1778,7 +1778,7 @@ export default function App() {
               </span>
             </h2>
             <p style={{ fontSize: isMobile ? "12.5px" : "14px", color: muted, marginBottom: "26px", lineHeight: 1.72 }}>
-              Join 4,200+ brands already on the Debby waitlist.
+              Join 100+ brands already on the Debby waitlist.
             </p>
             <div style={{ marginBottom: "13px" }}>
               <EmailForm dark={dark} label="Join the Waitlist" {...waitlistProps} />
