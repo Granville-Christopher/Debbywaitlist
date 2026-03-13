@@ -131,91 +131,103 @@ const icons = {
   ),
 };
 
-// ─── Tablet Storefront (3-col, placeholder colours) ──────────────────────────
+// ─── Tablet Storefront (Debby collections layout) ────────────────────────────
 function TabletStorefrontUI({ scale = 1 }) {
   const s = scale;
   const products = [
-    { name: "Meridian Jacket", price: "$289", color: "#E8E4DC" },
-    { name: "Studio Tote",     price: "$149", color: "#D4C5B0" },
-    { name: "Vapor Sneaker",   price: "$195", color: "#C9D4DC" },
-    { name: "Onyx Watch",      price: "$420", color: "#1a1a1a" },
-    { name: "Linen Shirt",     price: "$98",  color: "#EAE0D5" },
-    { name: "Canvas Pack",     price: "$175", color: "#BCC5B0" },
+    { name: "Silk Blazer", price: "$320", badge: "NEW", img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=200&q=80&fit=crop" },
+    { name: "Leather Tote", price: "$185", badge: null, img: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=80&fit=crop" },
+    { name: "Cloud Sneaker", price: "$210", badge: "HOT", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80&fit=crop" },
+    { name: "Linen Dress", price: "$165", badge: null, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=200&q=80&fit=crop" },
+    { name: "Merino Scarf", price: "$95", badge: "SALE", img: "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=200&q=80&fit=crop" },
+    { name: "Canvas Jacket", price: "$275", badge: null, img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=200&q=80&fit=crop" },
+    { name: "Denim Shorts", price: "$120", badge: null, img: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=200&q=80&fit=crop" },
+    { name: "Wool Cardigan", price: "$245", badge: "NEW", img: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=200&q=80&fit=crop" },
   ];
   return (
-    <div style={{ width:"100%", height:"100%", background:"#fff", fontFamily:"'DM Sans',sans-serif", overflow:"hidden", display:"flex", flexDirection:"column" }}>
-      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:`${7*s}px ${10*s}px`, background:"#fff", borderBottom:"1px solid #EFEFEF", flexShrink:0 }}>
-        <div style={{ display:"flex", alignItems:"center", gap:`${5*s}px` }}>
-          <div style={{ width:`${17*s}px`, height:`${17*s}px`, borderRadius:`${3.5*s}px`, background:"linear-gradient(135deg,#1E40AF,#3B82F6)" }} />
-          <span style={{ fontWeight:800, color:"#0D1117", fontSize:`${9.5*s}px`, letterSpacing:"0.04em" }}>DEBBY</span>
-        </div>
-        <div style={{ display:"flex", gap:`${7*s}px` }}>
-          {["Shop","Collections","Orders","Contact"].map(l => <span key={l} style={{ color:"#6E7681", fontSize:`${7*s}px` }}>{l}</span>)}
-        </div>
-        <div style={{ position:"relative" }}>
-          <div style={{ width:`${15*s}px`, height:`${15*s}px`, borderRadius:"50%", background:"linear-gradient(135deg,#1E40AF,#3B82F6)", display:"flex", alignItems:"center", justifyContent:"center" }}>
-            <span style={{ fontSize:`${6.5*s}px` }}>🛒</span>
-          </div>
-          <div style={{ position:"absolute", top:`${-1.5*s}px`, right:`${-1.5*s}px`, width:`${6.5*s}px`, height:`${6.5*s}px`, borderRadius:"50%", background:"#2563EB", display:"flex", alignItems:"center", justifyContent:"center" }}>
-            <span style={{ color:"#fff", fontSize:`${4*s}px`, fontWeight:700 }}>2</span>
+    <div style={{ width:"100%", height:"100%", background:"#FAFAFA", fontFamily:"'DM Sans',sans-serif", overflow:"hidden", display:"flex", flexDirection:"column" }}>
+      {/* Store Header */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:`${7*s}px ${12*s}px`, background:"#fff", borderBottom:"1px solid #F0F0F0", flexShrink:0 }}>
+        <span style={{ fontWeight:900, color:"#0D1117", fontSize:`${10*s}px`, letterSpacing:"0.14em" }}>ATELIER</span>
+        <div style={{ display:"flex", gap:`${8*s}px`, alignItems:"center" }}>
+          {["Shop","Collections","About"].map(l => <span key={l} style={{ color:"#8B949E", fontSize:`${6.5*s}px`, fontWeight:500 }}>{l}</span>)}
+          <div style={{ position:"relative" }}>
+            <div style={{ width:`${14*s}px`, height:`${14*s}px`, borderRadius:"50%", background:"#0D1117", display:"flex", alignItems:"center", justifyContent:"center" }}>
+              <span style={{ fontSize:`${6*s}px`, color:"#fff" }}>🛒</span>
+            </div>
+            <div style={{ position:"absolute", top:`${-2*s}px`, right:`${-2*s}px`, width:`${6*s}px`, height:`${6*s}px`, borderRadius:"50%", background:"#2563EB", display:"flex", alignItems:"center", justifyContent:"center" }}>
+              <span style={{ color:"#fff", fontSize:`${3.5*s}px`, fontWeight:800 }}>3</span>
+            </div>
           </div>
         </div>
       </div>
-      <div style={{ background:"linear-gradient(90deg,#1E40AF,#2563EB)", padding:`${3*s}px`, textAlign:"center", color:"#fff", fontSize:`${6*s}px`, letterSpacing:"0.05em", flexShrink:0 }}>
-        FREE SHIPPING WORLDWIDE · ORDERS OVER $150
-      </div>
-      <div style={{ padding:`${7*s}px`, flex:1, overflow:"hidden" }}>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:`${6*s}px` }}>
-          <span style={{ fontWeight:700, color:"#0D1117", fontSize:`${9*s}px` }}>New Arrivals</span>
-          <span style={{ color:"#2563EB", fontSize:`${7*s}px` }}>View all →</span>
+      {/* Collection Banner — real hero image */}
+      <div style={{ margin:`${5*s}px ${10*s}px`, borderRadius:`${7*s}px`, overflow:"hidden", position:"relative", height:`${75*s}px`, flexShrink:0 }}>
+        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&q=80&fit=crop" alt="" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} onError={e => { e.target.style.display="none"; e.target.parentElement.style.background="linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)"; }} />
+        <div style={{ position:"absolute", inset:0, background:"linear-gradient(to right,rgba(0,0,0,0.55),rgba(0,0,0,0.1))", display:"flex", flexDirection:"column", justifyContent:"center", padding:`${8*s}px ${12*s}px` }}>
+          <span style={{ color:"rgba(255,255,255,0.7)", fontSize:`${5*s}px`, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase" }}>Spring 2026</span>
+          <span style={{ color:"#fff", fontSize:`${9.5*s}px`, fontWeight:800, letterSpacing:"-0.02em", marginTop:`${1*s}px` }}>New Collection</span>
+          <div style={{ display:"inline-block", marginTop:`${3*s}px`, background:"#fff", color:"#0D1117", padding:`${2*s}px ${7*s}px`, borderRadius:`${3*s}px`, fontSize:`${5*s}px`, fontWeight:700, width:"fit-content" }}>Shop Now →</div>
         </div>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:`${4.5*s}px` }}>
+      </div>
+      {/* Featured Product Grid — real product images */}
+      <div style={{ padding:`${3*s}px ${10*s}px`, flex:1, minHeight:0, overflow:"auto" }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:`${4*s}px` }}>
+          <span style={{ fontWeight:700, color:"#0D1117", fontSize:`${7.5*s}px`, letterSpacing:"-0.01em" }}>Featured</span>
+          <span style={{ color:"#8B949E", fontSize:`${5.5*s}px`, fontWeight:500 }}>View all →</span>
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:`${3.5*s}px` }}>
           {products.map((p, i) => (
-            <div key={i} style={{ background:"#F9FAFB", borderRadius:`${6*s}px`, overflow:"hidden", border:"1px solid #EFEFEF", boxShadow:`0 ${1*s}px ${4*s}px rgba(0,0,0,0.04)` }}>
-              <div style={{ height:`${32*s}px`, background:p.color, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                <div style={{ width:`${14*s}px`, height:`${14*s}px`, borderRadius:"50%", background:"rgba(255,255,255,0.35)" }} />
+            <div key={i} style={{ background:"#fff", borderRadius:`${5*s}px`, overflow:"hidden", border:"1px solid #F0F0F0", boxShadow:`0 ${1*s}px ${3*s}px rgba(0,0,0,0.04)` }}>
+              <div style={{ height:`${26*s}px`, background: i%3===0 ? "linear-gradient(135deg,#E8E0F0,#F0F0F0)" : i%3===1 ? "linear-gradient(135deg,#E0ECF0,#F0F0F0)" : "#F0F0F0", position:"relative", overflow:"hidden" }}>
+                <img src={p.img} alt={p.name} style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} onError={e => { e.target.style.display="none"; }} />
+                {p.badge && <div style={{ position:"absolute", top:`${2*s}px`, left:`${2*s}px`, background: p.badge==="SALE"?"#EF4444":p.badge==="HOT"?"#F59E0B":"#0D1117", color:"#fff", fontSize:`${3.5*s}px`, fontWeight:700, padding:`${0.8*s}px ${2.5*s}px`, borderRadius:`${2*s}px`, letterSpacing:"0.04em" }}>{p.badge}</div>}
               </div>
-              <div style={{ padding:`${3.5*s}px` }}>
-                <div style={{ color:"#0D1117", fontWeight:600, fontSize:`${6.5*s}px`, marginBottom:`${1*s}px`, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{p.name}</div>
-                <div style={{ color:"#2563EB", fontWeight:700, fontSize:`${7.5*s}px`, marginBottom:`${3*s}px` }}>{p.price}</div>
-                <div style={{ background:"linear-gradient(135deg,#1E40AF,#2563EB)", color:"#fff", borderRadius:`${3*s}px`, padding:`${2*s}px`, textAlign:"center", fontSize:`${5.5*s}px`, fontWeight:600 }}>Add to Cart</div>
+              <div style={{ padding:`${2.5*s}px ${3.5*s}px ${3*s}px` }}>
+                <div style={{ color:"#0D1117", fontWeight:600, fontSize:`${5.2*s}px`, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", marginBottom:`${0.5*s}px` }}>{p.name}</div>
+                <div style={{ color:"#0D1117", fontWeight:800, fontSize:`${6*s}px` }}>{p.price}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
+      {/* Powered by Debby */}
+      <div style={{ padding:`${2.5*s}px`, textAlign:"center", borderTop:"1px solid #F0F0F0", flexShrink:0, background:"#fff" }}>
+        <span style={{ fontSize:`${4*s}px`, color:"#C0C0C0", fontWeight:500 }}>Powered by </span>
+        <span style={{ fontSize:`${4*s}px`, color:"#2563EB", fontWeight:800, letterSpacing:"0.06em" }}>DEBBY</span>
+      </div>
     </div>
   );
 }
 
-// ─── Phone Storefront (2-col, real product images, premium app look) ──────────
+// ─── Phone Storefront (Debby collections, premium app look) ──────────────────
 function PhoneStorefrontUI({ scale = 1 }) {
   const s = scale;
 
   const products = [
     {
-      name: "Meridian Jacket",
-      price: "$289",
+      name: "Silk Blazer",
+      price: "$320",
       tag: "NEW",
       img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&q=85&fit=crop",
       bg: "#F5F2EE",
     },
     {
-      name: "Studio Tote",
-      price: "$149",
+      name: "Leather Tote",
+      price: "$185",
       tag: "BESTSELLER",
       img: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&q=85&fit=crop",
       bg: "#EEF2F5",
     },
     {
-      name: "Vapor Sneaker",
-      price: "$195",
+      name: "Cloud Sneaker",
+      price: "$210",
       tag: null,
       img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=85&fit=crop",
       bg: "#F0F4F8",
     },
     {
-      name: "Onyx Watch",
+      name: "Merino Watch",
       price: "$420",
       tag: "LIMITED",
       img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&q=85&fit=crop",
@@ -232,16 +244,14 @@ function PhoneStorefrontUI({ scale = 1 }) {
       display: "flex", flexDirection: "column",
     }}>
 
-      {/* ── Status bar — sits beneath the Dynamic Island, padded from edges */}
+      {/* ── Status bar — sits beneath the Dynamic Island */}
       <div style={{
         display: "flex", justifyContent: "space-between", alignItems: "center",
-        // Top padding clears the Dynamic Island height + gap; sides cleared from thin bezel
         padding: `${22*s}px ${12*s}px ${4*s}px`,
         background: "#fff", flexShrink: 0,
       }}>
         <span style={{ fontSize: `${7*s}px`, fontWeight: 700, color: "#0D1117", letterSpacing: "0.01em" }}>9:41</span>
         <div style={{ display: "flex", gap: `${4*s}px`, alignItems: "center" }}>
-          {/* Signal bars */}
           {[4, 6.5, 9].map((ht, i) => (
             <div key={i} style={{
               width: `${2.5*s}px`, height: `${ht*s}px`,
@@ -249,40 +259,31 @@ function PhoneStorefrontUI({ scale = 1 }) {
               background: i < 2 ? "#0D1117" : "#D0D5DD",
             }} />
           ))}
-          {/* Wifi */}
           <svg width={`${9*s}`} height={`${7*s}`} viewBox="0 0 18 14" fill="none">
             <path d="M1 5C4.866 1.686 13.134 1.686 17 5" stroke="#0D1117" strokeWidth="1.8" strokeLinecap="round"/>
             <path d="M4 8.5C6.239 6.5 11.761 6.5 14 8.5" stroke="#0D1117" strokeWidth="1.8" strokeLinecap="round"/>
             <circle cx="9" cy="12" r="1.5" fill="#0D1117"/>
           </svg>
-          {/* Battery */}
-          {/* Battery */}
           <div style={{ display:"flex", alignItems:"center", gap:`${1.5*s}px` }}>
             <div style={{ position:"relative", width:`${15*s}px`, height:`${7.5*s}px`, border:`${0.8*s}px solid rgba(0,0,0,0.35)`, borderRadius:`${2*s}px`, padding:`${1*s}px` }}>
               <div style={{ width:"75%", height:"100%", background:"#22C55E", borderRadius:`${1*s}px` }} />
-              {/* battery nub */}
-              <div style={{ position:"absolute", right:`${-3*s}px`, top:"50%", transform:"translateY(-50%)", width:`${2*s}px`, height:`${4*s}px`, background:"rgba(0,0,0,0.35)", borderRadius:`${0 }px ${1*s}px ${1*s}px 0` }} />
+              <div style={{ position:"absolute", right:`${-3*s}px`, top:"50%", transform:"translateY(-50%)", width:`${2*s}px`, height:`${4*s}px`, background:"rgba(0,0,0,0.35)", borderRadius:`${0}px ${1*s}px ${1*s}px 0` }} />
             </div>
           </div>
         </div>
       </div>
 
-      {/* ── Nav bar */}
+      {/* ── Store nav bar */}
       <div style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: `${6*s}px ${10*s}px`,
         background: "#fff", borderBottom: "1px solid #F0F0F0", flexShrink: 0,
       }}>
-        <div style={{ display: "flex", alignItems: "center", gap: `${5*s}px` }}>
-          <div style={{ width: `${16*s}px`, height: `${16*s}px`, borderRadius: `${4*s}px`, background: "linear-gradient(135deg,#1E40AF,#3B82F6)" }} />
-          <span style={{ fontWeight: 800, color: "#0D1117", fontSize: `${9*s}px`, letterSpacing: "0.05em" }}>DEBBY</span>
-        </div>
+        <span style={{ fontWeight: 900, color: "#0D1117", fontSize: `${10*s}px`, letterSpacing: "0.14em" }}>ATELIER</span>
         <div style={{ display: "flex", alignItems: "center", gap: `${8*s}px` }}>
-          {/* Search icon */}
           <svg width={`${12*s}`} height={`${12*s}`} viewBox="0 0 24 24" fill="none" stroke="#6E7681" strokeWidth="2" strokeLinecap="round">
             <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
           </svg>
-          {/* Cart with badge */}
           <div style={{ position: "relative" }}>
             <svg width={`${13*s}`} height={`${13*s}`} viewBox="0 0 24 24" fill="none" stroke="#0D1117" strokeWidth="2" strokeLinecap="round">
               <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
@@ -294,23 +295,61 @@ function PhoneStorefrontUI({ scale = 1 }) {
               background: "#2563EB",
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
-              <span style={{ color: "#fff", fontSize: `${4*s}px`, fontWeight: 800 }}>2</span>
+              <span style={{ color: "#fff", fontSize: `${4*s}px`, fontWeight: 800 }}>3</span>
             </div>
           </div>
         </div>
       </div>
 
+      {/* ── Hero Banner — real image (ABOVE category pills) */}
+      <div style={{
+        margin: `${4*s}px ${6*s}px`,
+        borderRadius: `${8*s}px`,
+        overflow: "hidden",
+        position: "relative",
+        height: `${180*s}px`,
+        flexShrink: 0,
+      }}>
+        <img
+          src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&q=80&fit=crop"
+          alt=""
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          onError={e => { e.target.style.display = "none"; e.target.parentElement.style.background = "linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)"; }}
+        />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.08) 65%)",
+          display: "flex", flexDirection: "column", justifyContent: "flex-end",
+          padding: `${8*s}px ${10*s}px`,
+        }}>
+          <span style={{
+            color: "rgba(255,255,255,0.8)", fontSize: `${8*s}px`,
+            fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
+          }}>Spring 2026</span>
+          <span style={{
+            color: "#fff", fontSize: `${16*s}px`, fontWeight: 800,
+            letterSpacing: "-0.02em", marginTop: `${1.5*s}px`, lineHeight: 1.05,
+          }}>New Collection</span>
+          <div style={{
+            display: "inline-block", marginTop: `${5*s}px`,
+            background: "#fff", color: "#0D1117",
+            padding: `${4*s}px ${12*s}px`, borderRadius: `${5*s}px`,
+            fontSize: `${7.5*s}px`, fontWeight: 800, width: "fit-content",
+          }}>Shop Now →</div>
+        </div>
+      </div>
+
       {/* ── Category pills */}
       <div style={{
-        display: "flex", gap: `${5*s}px`, padding: `${6*s}px ${10*s}px`,
+        display: "flex", gap: `${5*s}px`, padding: `${5*s}px ${10*s}px`,
         background: "#fff", borderBottom: "1px solid #F4F4F4",
         flexShrink: 0, overflowX: "hidden",
       }}>
-        {["All","Jackets","Bags","Shoes","Watches"].map((cat, i) => (
+        {["All","Blazers","Bags","Shoes","Watches"].map((cat, i) => (
           <div key={cat} style={{
             padding: `${2.5*s}px ${7*s}px`,
             borderRadius: `${20*s}px`,
-            background: i === 0 ? "linear-gradient(135deg,#1E40AF,#2563EB)" : "#F4F4F5",
+            background: i === 0 ? "#0D1117" : "#F4F4F5",
             color: i === 0 ? "#fff" : "#57606A",
             fontSize: `${6.5*s}px`, fontWeight: i === 0 ? 700 : 500,
             whiteSpace: "nowrap", flexShrink: 0,
@@ -318,89 +357,79 @@ function PhoneStorefrontUI({ scale = 1 }) {
         ))}
       </div>
 
-      {/* ── Section header */}
+      {/* ── Featured header */}
       <div style={{
         display: "flex", justifyContent: "space-between", alignItems: "center",
-        padding: `${7*s}px ${10*s}px ${4*s}px`,
+        padding: `${5*s}px ${10*s}px ${4*s}px`,
         background: "#FAFAFA", flexShrink: 0,
       }}>
-        <span style={{ fontWeight: 700, color: "#0D1117", fontSize: `${8.5*s}px`, letterSpacing: "-0.01em" }}>New Arrivals</span>
-        <span style={{ color: "#2563EB", fontSize: `${7*s}px`, fontWeight: 600 }}>See all →</span>
+        <span style={{ fontWeight: 800, color: "#0D1117", fontSize: `${8.5*s}px`, letterSpacing: "-0.02em" }}>Featured</span>
+        <span style={{ color: "#8B949E", fontSize: `${6.5*s}px`, fontWeight: 500 }}>See all →</span>
       </div>
 
       {/* ── 2-col product grid */}
-      <div style={{ padding: `0 ${8*s}px ${8*s}px`, flex: 1, overflow: "hidden" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: `${7*s}px` }}>
+      <div style={{ padding: `0 ${8*s}px`, flex: 1, overflow: "hidden" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: `${6*s}px` }}>
           {products.map((p, i) => (
             <div key={i} style={{
               background: "#fff",
-              borderRadius: `${8*s}px`,
+              borderRadius: `${7*s}px`,
               overflow: "hidden",
-              boxShadow: `0 ${2*s}px ${8*s}px rgba(0,0,0,0.06), 0 0 0 ${0.5*s}px rgba(0,0,0,0.04)`,
+              boxShadow: `0 ${1*s}px ${6*s}px rgba(0,0,0,0.06), 0 0 0 ${0.5*s}px rgba(0,0,0,0.03)`,
             }}>
-              {/* Product image */}
-              <div style={{ position: "relative", background: p.bg, height: `${54*s}px`, overflow: "hidden" }}>
+              <div style={{ position: "relative", background: p.bg, height: `${52*s}px`, overflow: "hidden" }}>
                 <img
                   src={p.img}
                   alt={p.name}
-                  style={{
-                    width: "100%", height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   onError={e => { e.target.style.display = "none"; }}
                 />
-                {/* Wishlist heart */}
                 <div style={{
                   position: "absolute", top: `${4*s}px`, right: `${4*s}px`,
-                  width: `${13*s}px`, height: `${13*s}px`,
-                  background: "rgba(255,255,255,0.88)",
+                  width: `${12*s}px`, height: `${12*s}px`,
+                  background: "rgba(255,255,255,0.9)",
                   borderRadius: "50%", backdropFilter: "blur(4px)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}>
-                  <svg width={`${7*s}`} height={`${7*s}`} viewBox="0 0 24 24" fill="none" stroke="#6E7681" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width={`${6.5*s}`} height={`${6.5*s}`} viewBox="0 0 24 24" fill="none" stroke="#8B949E" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                   </svg>
                 </div>
-                {/* Tag badge */}
                 {p.tag && (
                   <div style={{
                     position: "absolute", top: `${4*s}px`, left: `${4*s}px`,
                     background: p.tag === "LIMITED" ? "#1a1a1a" : p.tag === "BESTSELLER" ? "#2563EB" : "#22C55E",
-                    color: "#fff", fontSize: `${5*s}px`, fontWeight: 700,
+                    color: "#fff", fontSize: `${4.5*s}px`, fontWeight: 700,
                     padding: `${1.5*s}px ${4*s}px`, borderRadius: `${3*s}px`,
                     letterSpacing: "0.04em",
                   }}>{p.tag}</div>
                 )}
               </div>
-              {/* Product info */}
-              <div style={{ padding: `${5*s}px ${6*s}px ${6*s}px` }}>
+              <div style={{ padding: `${4*s}px ${5*s}px ${5*s}px` }}>
                 <div style={{
                   color: "#0D1117", fontWeight: 600,
-                  fontSize: `${7*s}px`, marginBottom: `${2*s}px`,
+                  fontSize: `${6.5*s}px`, marginBottom: `${1.5*s}px`,
                   lineHeight: 1.3, letterSpacing: "-0.01em",
                   overflow: "hidden", display: "-webkit-box",
                   WebkitLineClamp: 1, WebkitBoxOrient: "vertical",
                 }}>{p.name}</div>
-                {/* Stars */}
-                <div style={{ display: "flex", alignItems: "center", gap: `${2*s}px`, marginBottom: `${4*s}px` }}>
+                <div style={{ display: "flex", alignItems: "center", gap: `${1.5*s}px`, marginBottom: `${3*s}px` }}>
                   {[1,2,3,4,5].map(n => (
-                    <svg key={n} width={`${5.5*s}`} height={`${5.5*s}`} viewBox="0 0 24 24" fill={n <= 4 ? "#FBBF24" : "none"} stroke="#FBBF24" strokeWidth="2">
+                    <svg key={n} width={`${5*s}`} height={`${5*s}`} viewBox="0 0 24 24" fill={n <= 4 ? "#FBBF24" : "none"} stroke="#FBBF24" strokeWidth="2">
                       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                     </svg>
                   ))}
-                  <span style={{ color: "#8B949E", fontSize: `${5*s}px`, fontWeight: 500 }}>4.8</span>
+                  <span style={{ color: "#8B949E", fontSize: `${4.5*s}px`, fontWeight: 500 }}>4.8</span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <span style={{ color: "#1E3A8A", fontWeight: 800, fontSize: `${8.5*s}px`, letterSpacing: "-0.02em" }}>{p.price}</span>
+                  <span style={{ color: "#0D1117", fontWeight: 800, fontSize: `${8*s}px`, letterSpacing: "-0.02em" }}>{p.price}</span>
                   <div style={{
-                    width: `${18*s}px`, height: `${18*s}px`,
-                    background: "linear-gradient(135deg,#1E3A8A,#2563EB)",
-                    borderRadius: `${5*s}px`,
+                    width: `${16*s}px`, height: `${16*s}px`,
+                    background: "#0D1117",
+                    borderRadius: `${4.5*s}px`,
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    boxShadow: `0 ${2*s}px ${5*s}px rgba(37,99,235,0.38)`,
                   }}>
-                    <svg width={`${9*s}`} height={`${9*s}`} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
+                    <svg width={`${8*s}`} height={`${8*s}`} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
                       <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
                     </svg>
                   </div>
@@ -410,6 +439,12 @@ function PhoneStorefrontUI({ scale = 1 }) {
           ))}
         </div>
       </div>
+
+      {/* ── Powered by Debby */}
+      <div style={{ padding: `${3*s}px`, textAlign: "center", flexShrink: 0, marginTop: "auto" }}>
+        <span style={{ fontSize: `${4*s}px`, color: "#C0C0C0", fontWeight: 500 }}>Powered by </span>
+        <span style={{ fontSize: `${4*s}px`, color: "#2563EB", fontWeight: 800, letterSpacing: "0.06em" }}>DEBBY</span>
+      </div>
     </div>
   );
 }
@@ -418,15 +453,15 @@ function PhoneStorefrontUI({ scale = 1 }) {
 function TabletFrame() {
   return (
     <div style={{
-      width: "310px", height: "218px",
+      width: "360px", height: "254px",
       background: "#161C28",
-      borderRadius: "15px", padding: "8px",
+      borderRadius: "16px", padding: "8px",
       boxShadow: "0 24px 60px rgba(0,0,0,0.52), 0 0 0 1px rgba(255,255,255,0.07), inset 0 1px 0 rgba(255,255,255,0.09)",
       flexShrink: 0, position: "relative",
     }}>
       <div style={{ position: "absolute", top: "3.5px", left: "50%", transform: "translateX(-50%)", width: "3.5px", height: "3.5px", borderRadius: "50%", background: "#252D3F" }} />
-      <div style={{ width: "100%", height: "100%", borderRadius: "8px", overflow: "hidden" }}>
-        <TabletStorefrontUI scale={0.82} />
+      <div style={{ width: "100%", height: "100%", borderRadius: "9px", overflow: "hidden" }}>
+        <TabletStorefrontUI scale={0.95} />
       </div>
     </div>
   );
@@ -435,10 +470,10 @@ function TabletFrame() {
 function PhoneFrame({ small = false }) {
   // Ultra-thin bezel: only 3px of chassis visible around the screen
   const bezel = small ? 3 : 3;
-  const w     = small ? 134 : 144;
-  const h     = small ? 274 : 295;
-  const br    = small ? 28 : 30;   // outer corner radius
-  const sc    = small ? 0.50 : 0.54;
+  const w     = small ? 140 : 156;
+  const h     = small ? 288 : 338;
+  const br    = small ? 28 : 32;   // outer corner radius
+  const sc    = small ? 0.52 : 0.58;
 
   // Dynamic Island dimensions (sits inside the screen area)
   const diW   = small ? 36 : 40;
@@ -524,104 +559,124 @@ function PhoneFrame({ small = false }) {
   );
 }
 
-// ─── Desktop Hero Device Scene ────────────────────────────────────────────────
+// ─── Desktop Hero Device Scene (CSS-animated, GPU-accelerated) ────────────────
 function DesktopDevices({ dark, large = false }) {
-  const [off, setOff] = useState(0);
-  useEffect(() => {
-    let raf, t = 0;
-    const tick = () => { t += 0.004; setOff(Math.sin(t) * 7); raf = requestAnimationFrame(tick); };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
-  const sceneHeight = large ? 390 : 320;
-  const glowWidth = large ? 320 : 240;
-  const glowHeight = large ? 210 : 160;
+  const sceneHeight = large ? 400 : 370;
+  const glowWidth = large ? 360 : 300;
+  const glowHeight = large ? 230 : 200;
+  // Scale up devices on md screens (non-large) for visual impact
+  const tabletScale = large ? "scale(1.08) " : "scale(1.12) ";
+  const phoneScale = large ? "scale(1.1) " : "scale(1.14) ";
 
   return (
     <div style={{ position: "relative", width: "100%", height: `${sceneHeight}px`, overflow: "visible" }}>
-      {/* Ambient glow */}
+      {/* Ambient glow — pulses gently */}
       <div style={{
-        position: "absolute", top: large ? "36%" : "38%", left: large ? "44%" : "42%",
+        position: "absolute", top: "38%", left: "46%",
         transform: "translate(-50%,-50%)",
         width: `${glowWidth}px`, height: `${glowHeight}px`,
-        background: "radial-gradient(ellipse,rgba(37,99,235,0.2) 0%,transparent 70%)",
-        filter: `blur(${large ? 34 : 26}px)`, pointerEvents: "none",
+        background: "radial-gradient(ellipse,rgba(37,99,235,0.22) 0%,rgba(124,58,237,0.08) 40%,transparent 70%)",
+        filter: `blur(${large ? 34 : 28}px)`, pointerEvents: "none",
+        animation: "heroGlow 6s ease-in-out infinite",
+        willChange: "opacity, transform",
       }} />
-      {/* Tablet — behind, left */}
+      {/* Devices wrapper — centered with fixed gap */}
       <div style={{
-        position: "absolute", left: large ? "12px" : 0, top: `${(large ? 22 : 8) + off * 0.55}px`,
-        transform: `${large ? "scale(1.08) " : ""}perspective(900px) rotateY(7deg) rotateX(2deg)`,
-        transformOrigin: "left center",
-        zIndex: 1,
+        position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
+        display: "flex", alignItems: "flex-start", gap: large ? "100px" : "60px",
       }}>
-        <TabletFrame />
+        {/* Tablet — left side */}
+        <div style={{
+          marginTop: large ? "28px" : "16px",
+          animation: "floatA 7s ease-in-out infinite",
+          willChange: "transform",
+          zIndex: 1,
+        }}>
+          <div style={{
+            transform: `${tabletScale}perspective(900px) rotateY(7deg) rotateX(2deg)`,
+            transformOrigin: "left center",
+          }}>
+            <TabletFrame />
+          </div>
+        </div>
+        {/* Phone — right side */}
+        <div style={{
+          marginTop: large ? "18px" : "6px",
+          animation: "floatB 5.5s ease-in-out infinite 0.8s",
+          willChange: "transform",
+          zIndex: 2,
+        }}>
+          <div style={{
+            transform: `${phoneScale}perspective(900px) rotateY(-5deg) rotateX(2deg)`,
+            transformOrigin: "right center",
+          }}>
+            <PhoneFrame />
+          </div>
+        </div>
       </div>
-      {/* Phone — front, right */}
+      {/* Badge — floats independently */}
       <div style={{
-        position: "absolute", right: large ? "20px" : "8px", top: `${(large ? 16 : 0) + off * -0.9}px`,
-        transform: `${large ? "scale(1.1) " : ""}perspective(900px) rotateY(-5deg) rotateX(2deg)`,
-        transformOrigin: "right center",
-        zIndex: 2,
+        position: "absolute", bottom: large ? "8px" : "0px", left: "50%", transform: "translateX(-50%)",
+        animation: "floatC 8s ease-in-out infinite 0.4s",
+        willChange: "transform",
+        zIndex: 10,
       }}>
-        <PhoneFrame />
-      </div>
-      {/* Badge */}
-      <div style={{
-        position: "absolute", bottom: large ? "6px" : "-8px", left: large ? "132px" : "118px",
-        background: dark ? "rgba(12,20,38,0.97)" : "rgba(255,255,255,0.97)",
-        border: `1px solid ${dark ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.07)"}`,
-        borderRadius: "10px", padding: large ? "8px 14px" : "7px 13px",
-        backdropFilter: "blur(20px)",
-        boxShadow: "0 6px 24px rgba(0,0,0,0.16)",
-        zIndex: 10, transform: `translateY(${off * 0.35}px)`,
-        display: "flex", alignItems: "center", gap: "7px",
-      }}>
-        <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#22C55E", boxShadow: "0 0 5px #22C55E" }} />
-        <span style={{ fontSize: "11.5px", fontWeight: 600, color: dark ? "#F0F6FC" : "#0D1117", whiteSpace: "nowrap" }}>
-          $48,291 revenue today
-        </span>
+        <div style={{
+          background: dark ? "rgba(12,20,38,0.97)" : "rgba(255,255,255,0.97)",
+          border: `1px solid ${dark ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.07)"}`,
+          borderRadius: "10px", padding: large ? "8px 14px" : "7px 13px",
+          backdropFilter: "blur(20px)",
+          boxShadow: "0 6px 24px rgba(0,0,0,0.16)",
+          display: "flex", alignItems: "center", gap: "7px",
+        }}>
+          <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#22C55E", boxShadow: "0 0 6px #22C55E", animation: "pulse 2s ease-in-out infinite" }} />
+          <span style={{ fontSize: "11.5px", fontWeight: 600, color: dark ? "#F0F6FC" : "#0D1117", whiteSpace: "nowrap" }}>
+            $48,291 revenue today
+          </span>
+        </div>
       </div>
     </div>
   );
 }
 
-// ─── Mobile Device Scene (phone only, centered) ───────────────────────────────
+// ─── Mobile Device Scene (CSS-animated, GPU-accelerated) ──────────────────────
 function MobileDevice({ dark }) {
-  const [off, setOff] = useState(0);
-  useEffect(() => {
-    let raf, t = 0;
-    const tick = () => { t += 0.004; setOff(Math.sin(t) * 5); raf = requestAnimationFrame(tick); };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "18px" }}>
-      <div style={{ position: "relative", transform: `translateY(${off}px)`, transition: "transform 0.1s ease" }}>
-        {/* Glow halo */}
+      <div style={{
+        position: "relative",
+        animation: "floatB 6s ease-in-out infinite",
+        willChange: "transform",
+      }}>
+        {/* Glow halo — pulses */}
         <div style={{
           position: "absolute", top: "50%", left: "50%",
           transform: "translate(-50%,-50%)",
-          width: "150px", height: "130px",
-          background: "radial-gradient(ellipse,rgba(37,99,235,0.28) 0%,transparent 70%)",
-          filter: "blur(22px)", pointerEvents: "none",
+          width: "170px", height: "150px",
+          background: "radial-gradient(ellipse,rgba(37,99,235,0.28) 0%,rgba(124,58,237,0.1) 40%,transparent 70%)",
+          filter: "blur(24px)", pointerEvents: "none",
+          animation: "heroGlow 5s ease-in-out infinite 1s",
         }} />
         <PhoneFrame small />
       </div>
       {/* Badge */}
       <div style={{
-        background: dark ? "rgba(12,20,38,0.97)" : "rgba(255,255,255,0.97)",
-        border: `1px solid ${dark ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.07)"}`,
-        borderRadius: "10px", padding: "8px 16px",
-        backdropFilter: "blur(18px)",
-        boxShadow: "0 6px 22px rgba(0,0,0,0.14)",
-        display: "flex", alignItems: "center", gap: "7px",
+        animation: "floatC 7s ease-in-out infinite 0.6s",
+        willChange: "transform",
       }}>
-        <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#22C55E", boxShadow: "0 0 5px #22C55E" }} />
-        <span style={{ fontSize: "12px", fontWeight: 600, color: dark ? "#F0F6FC" : "#0D1117" }}>
-          $48,291 revenue today
-        </span>
+        <div style={{
+          background: dark ? "rgba(12,20,38,0.97)" : "rgba(255,255,255,0.97)",
+          border: `1px solid ${dark ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.07)"}`,
+          borderRadius: "10px", padding: "8px 16px",
+          backdropFilter: "blur(18px)",
+          boxShadow: "0 6px 22px rgba(0,0,0,0.14)",
+          display: "flex", alignItems: "center", gap: "7px",
+        }}>
+          <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#22C55E", boxShadow: "0 0 6px #22C55E", animation: "pulse 2s ease-in-out infinite" }} />
+          <span style={{ fontSize: "12px", fontWeight: 600, color: dark ? "#F0F6FC" : "#0D1117" }}>
+            $48,291 revenue today
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -885,6 +940,15 @@ export default function App() {
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.42} }
         @keyframes logoPing { 75%,100% { transform: scale(1.75); opacity: 0; } }
         @keyframes fadeUp { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes gradientFlow { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+        @keyframes floatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+        @keyframes floatC { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+        @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+        @keyframes slideUp { from{opacity:0;transform:translateY(36px) scale(0.98)} to{opacity:1;transform:translateY(0) scale(1)} }
+        @keyframes heroGlow { 0%,100%{opacity:0.4;transform:scale(1)} 50%{opacity:0.7;transform:scale(1.06)} }
+        @keyframes badgePop { from{opacity:0;transform:translateY(12px) scale(0.92)} to{opacity:1;transform:translateY(0) scale(1)} }
+        @keyframes countUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: rgba(37,99,235,0.32); border-radius: 3px; }
         input::placeholder { color: rgba(110,110,130,0.55) !important; }
@@ -987,307 +1051,326 @@ export default function App() {
   position: "relative",
   maxWidth: "1280px",
   margin: "0 auto",
-  padding: "118px 52px 94px",
+  padding: "120px 52px 64px",
+  overflow: "visible",
 }}>
-  <div
-    aria-hidden
-    style={{
-      position: "absolute",
-      inset: "36px 26px 20px",
-      borderRadius: "32px",
-      border: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.08)"}`,
-      background: dark
-        ? "linear-gradient(160deg,rgba(10,14,24,0.92),rgba(12,18,30,0.8))"
-        : "linear-gradient(160deg,rgba(255,255,255,0.96),rgba(248,250,252,0.98))",
-      boxShadow: dark
-        ? "0 30px 78px rgba(2,6,23,0.52)"
-        : "0 24px 64px rgba(15,23,42,0.14)",
-      pointerEvents: "none",
-    }}
-  />
+  {/* ── Multi-layer ambient background ── */}
+  <div aria-hidden style={{
+    position: "absolute", top: "-120px", left: "50%", transform: "translateX(-50%)",
+    width: "900px", height: "700px",
+    background: dark
+      ? "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(37,99,235,0.12) 0%, rgba(124,58,237,0.06) 40%, transparent 70%)"
+      : "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(37,99,235,0.08) 0%, rgba(124,58,237,0.04) 40%, transparent 70%)",
+    filter: "blur(80px)", pointerEvents: "none",
+    animation: "heroGlow 10s ease-in-out infinite",
+  }} />
+  <div aria-hidden style={{
+    position: "absolute", top: "20%", left: "-8%",
+    width: "380px", height: "380px",
+    background: "radial-gradient(circle, rgba(236,72,153,0.06) 0%, transparent 65%)",
+    filter: "blur(60px)", pointerEvents: "none",
+    animation: "heroGlow 8s ease-in-out infinite 3s",
+  }} />
+  <div aria-hidden style={{
+    position: "absolute", top: "10%", right: "-5%",
+    width: "340px", height: "340px",
+    background: "radial-gradient(circle, rgba(34,197,94,0.05) 0%, transparent 65%)",
+    filter: "blur(55px)", pointerEvents: "none",
+    animation: "heroGlow 9s ease-in-out infinite 1.5s",
+  }} />
 
+  {/* ── Centered text content ── */}
   <div style={{
-    position: "relative",
-    zIndex: 1,
-    display: "grid",
-    gridTemplateColumns: "1fr 0.94fr",
-    gap: "72px",
-    alignItems: "center",
+    position: "relative", zIndex: 2,
+    textAlign: "center",
+    maxWidth: "820px",
+    margin: "0 auto",
   }}>
+    {/* Badge */}
     <div style={{
-      animation: "fadeUp 0.62s ease forwards",
-      minWidth: 0,
+      display: "inline-flex", alignItems: "center", gap: "8px",
+      marginBottom: "32px",
+      padding: "7px 16px 7px 10px",
+      borderRadius: "999px",
+      border: "1px solid rgba(37,99,235,0.24)",
+      background: dark ? "rgba(37,99,235,0.1)" : "rgba(37,99,235,0.06)",
+      backdropFilter: "blur(10px)",
+      animation: "badgePop 0.6s ease forwards",
     }}>
       <div style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "8px",
-        marginBottom: "24px",
-        width: "fit-content",
-        padding: "6px 14px",
-        borderRadius: "999px",
-        border: "1px solid rgba(37,99,235,0.24)",
-        background: dark ? "rgba(37,99,235,0.12)" : "rgba(37,99,235,0.08)",
+        width: "20px", height: "20px", borderRadius: "50%",
+        background: "linear-gradient(135deg,#22C55E,#16A34A)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        boxShadow: "0 0 10px rgba(34,197,94,0.45)",
       }}>
-        <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#22C55E", animation: "pulse 2s infinite" }} />
-        <span style={{ fontSize: "10.5px", fontWeight: 700, color: "#2563EB", letterSpacing: "0.08em" }}>
-          DEBBY EARLY ACCESS
-        </span>
+        <span style={{ fontSize: "10px" }}>✦</span>
       </div>
+      <span style={{ fontSize: "12px", fontWeight: 700, color: "#2563EB", letterSpacing: "0.06em" }}>
+        EARLY ACCESS · 4,200+ BRANDS WAITING
+      </span>
+    </div>
 
-      <h1 style={{
-        fontFamily: "'Fraunces', serif",
-        fontWeight: 700,
-        fontSize: "64px",
-        lineHeight: 1.01,
-        letterSpacing: "-0.04em",
-        color: text,
-        marginBottom: "18px",
-        maxWidth: "660px",
+    {/* H1 — massive centered headline */}
+    <h1 style={{
+      fontFamily: "'Fraunces', serif",
+      fontWeight: 700,
+      fontSize: "74px",
+      lineHeight: 1.0,
+      letterSpacing: "-0.045em",
+      color: text,
+      marginBottom: "24px",
+    }}>
+      <span style={{
+        display: "block",
+        animation: "slideUp 0.7s ease forwards",
+        opacity: 0, animationDelay: "0.1s", animationFillMode: "forwards",
       }}>
-        A Cleaner Core
-        <br />
+        Your Store, CRM &
+      </span>
+      <span style={{
+        display: "block",
+        animation: "slideUp 0.7s ease forwards",
+        opacity: 0, animationDelay: "0.25s", animationFillMode: "forwards",
+      }}>
+        Payments —{" "}
         <span style={{
-          background: "linear-gradient(135deg,#1D4ED8,#60A5FA)",
+          background: "linear-gradient(90deg,#2563EB,#7C3AED,#EC4899,#2563EB)",
+          backgroundSize: "200% auto",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
+          animation: "gradientFlow 4s linear infinite",
         }}>
-          for Modern Commerce.
+          All in One
         </span>
-      </h1>
+      </span>
+    </h1>
 
-      <p style={{
-        fontSize: "16px",
-        lineHeight: 1.85,
-        color: muted,
-        maxWidth: "590px",
-        marginBottom: "24px",
-      }}>
-        Debby unifies storefront, CRM, billing, and automation into one elegant operational system built for precision, speed, and scale.
-      </p>
-
-      <div style={{
-        borderRadius: "16px",
-        border: `1px solid ${dark ? "rgba(255,255,255,0.1)" : "rgba(15,23,42,0.1)"}`,
-        background: dark ? "rgba(255,255,255,0.022)" : "rgba(255,255,255,0.92)",
-        boxShadow: dark ? "0 14px 34px rgba(2,6,23,0.4)" : "0 10px 26px rgba(15,23,42,0.12)",
-        padding: "16px",
-        marginBottom: "16px",
-      }}>
-        <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em", color: "#3B82F6", textTransform: "uppercase", marginBottom: "10px" }}>
-          Join The Waitlist
-        </p>
-        <EmailForm dark={dark} label="Join the Waitlist" {...waitlistProps} />
-      </div>
-
-      <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "18px" }}>
-        <a href="#early-access" style={{
-          display: "inline-flex", alignItems: "center", gap: "7px",
-          padding: "10px 16px", borderRadius: "10px",
-          border: `1.5px solid ${border}`,
-          color: muted,
-          textDecoration: "none",
-          fontSize: "12.5px",
-          fontWeight: 600,
-          background: dark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)",
-        }}>
-          {icons.arrow} Request Early Access Details
-        </a>
-        <span style={{ fontSize: "12px", color: muted }}>No spam. Product updates only.</span>
-      </div>
-
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3,minmax(0,1fr))",
-        gap: "10px",
-      }}>
-        {[['4,200+','Brands waiting'],['$2.1B+','Projected GMV'],['47','Countries']].map(([stat, lbl]) => (
-          <div key={stat} style={{
-            padding: "13px 14px",
-            borderRadius: "12px",
-            border: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.08)"}`,
-            background: dark ? "rgba(255,255,255,0.016)" : "rgba(255,255,255,0.86)",
-          }}>
-            <div style={{ fontWeight: 800, fontSize: "24px", color: text, fontFamily: "'Fraunces',serif", letterSpacing: "-0.02em" }}>{stat}</div>
-            <div style={{ fontSize: "11px", color: muted, marginTop: "2px", letterSpacing: "0.02em" }}>{lbl}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <div style={{
-      animation: "fadeUp 0.7s ease 0.14s both",
-      position: "relative",
-      borderRadius: "24px",
-      border: `1px solid ${dark ? "rgba(255,255,255,0.1)" : "rgba(15,23,42,0.08)"}`,
-      background: dark
-        ? "linear-gradient(170deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))"
-        : "linear-gradient(170deg,rgba(255,255,255,0.98),rgba(248,250,252,0.94))",
-      boxShadow: dark ? "0 22px 58px rgba(2,6,23,0.46)" : "0 18px 44px rgba(15,23,42,0.14)",
-      padding: "30px 24px 22px",
-      overflow: "hidden",
+    {/* Sub */}
+    <p style={{
+      fontSize: "17.5px", lineHeight: 1.75, color: muted,
+      maxWidth: "600px", margin: "0 auto 32px",
+      animation: "slideUp 0.7s ease forwards",
+      opacity: 0, animationDelay: "0.45s", animationFillMode: "forwards",
     }}>
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          right: "-42px",
-          top: "-30px",
-          width: "220px",
-          height: "220px",
-          background: "radial-gradient(circle,rgba(59,130,246,0.24) 0%,transparent 72%)",
-          filter: "blur(12px)",
-          pointerEvents: "none",
-        }}
-      />
-      <DesktopDevices dark={dark} large />
-      <p style={{
-        marginTop: "8px",
-        textAlign: "center",
-        fontSize: "11px",
-        letterSpacing: "0.06em",
-        textTransform: "uppercase",
-        color: muted,
-      }}>
-        Unified storefront, CRM, billing, and automation
-      </p>
+      Debby replaces your storefront builder, CRM, payment tools, and automation&nbsp;—
+      with one elegant system. Launch in 60&nbsp;seconds. Scale to millions.
+    </p>
+
+    {/* Form — centered */}
+    <div id="waitlist" style={{
+      maxWidth: "520px", margin: "0 auto 16px",
+      animation: "slideUp 0.7s ease forwards",
+      opacity: 0, animationDelay: "0.6s", animationFillMode: "forwards",
+    }}>
+      <EmailForm dark={dark} label="Get Early Access →" {...waitlistProps} />
     </div>
+
+    {/* Trust */}
+    <div style={{
+      display: "flex", alignItems: "center", justifyContent: "center",
+      gap: "16px", marginBottom: "0",
+      animation: "slideUp 0.7s ease forwards",
+      opacity: 0, animationDelay: "0.75s", animationFillMode: "forwards",
+    }}>
+      {[["No credit card","check"],["Free during beta",null],["Cancel anytime",null]].map(([t], i) => (
+        <span key={t} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+          {i === 0 && <span style={{ color: "#22C55E", flexShrink: 0 }}>{icons.check}</span>}
+          {i > 0 && <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: muted, opacity: 0.4, marginRight: "2px" }} />}
+          <span style={{ fontSize: "12.5px", color: muted }}>{t}</span>
+        </span>
+      ))}
+    </div>
+  </div>
+
+  {/* ── Device showcase — flat on main bg ── */}
+  <div style={{
+    position: "relative", zIndex: 1,
+    marginTop: "56px",
+    animation: "slideUp 0.9s ease forwards",
+    opacity: 0, animationDelay: "0.5s", animationFillMode: "forwards",
+  }}>
+    <DesktopDevices dark={dark} large />
+
+    {/* Caption */}
+    <p style={{
+      textAlign: "center", fontSize: "11.5px",
+      letterSpacing: "0.06em", textTransform: "uppercase",
+      color: muted, marginTop: "12px",
+      position: "relative", zIndex: 2,
+    }}>
+      This is what your store looks like on Debby
+    </p>
+  </div>
+
+  {/* ── Stats row ── */}
+  <div style={{
+    display: "flex", justifyContent: "center", gap: "16px",
+    marginTop: "36px", position: "relative", zIndex: 2,
+    animation: "slideUp 0.7s ease forwards",
+    opacity: 0, animationDelay: "0.95s", animationFillMode: "forwards",
+  }}>
+    {[['4,200+','Brands on waitlist'],['$2.1B+','Projected GMV'],['47','Countries ready']].map(([stat, lbl], i) => (
+      <div key={stat} style={{
+        padding: "16px 28px",
+        borderRadius: "14px",
+        border: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.08)"}`,
+        background: dark ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.9)",
+        backdropFilter: "blur(8px)",
+        boxShadow: dark ? "0 4px 20px rgba(0,0,0,0.2)" : "0 4px 16px rgba(15,23,42,0.06)",
+        textAlign: "center",
+        animation: "countUp 0.5s ease forwards",
+        opacity: 0,
+        animationDelay: `${1.1 + i * 0.12}s`,
+        animationFillMode: "forwards",
+        minWidth: "160px",
+      }}>
+        <div style={{ fontWeight: 800, fontSize: "28px", color: text, fontFamily: "'Fraunces',serif", letterSpacing: "-0.02em" }}>{stat}</div>
+        <div style={{ fontSize: "12px", color: muted, marginTop: "3px", letterSpacing: "0.02em" }}>{lbl}</div>
+      </div>
+    ))}
   </div>
 </section>
 ) : (
 <section style={{
         position: "relative",
-        maxWidth: isDesktop ? "1240px" : "1160px", margin: "0 auto",
+        maxWidth: "1160px", margin: "0 auto",
         padding: isMobile
-          ? "82px 20px 52px"
-          : isTablet ? "92px 28px 64px" : "112px 44px 86px",
-        display: "grid",
-        gridTemplateColumns: isMobile ? "1fr" : isDesktop ? "1.04fr 0.96fr" : "1fr 1fr",
-        gap: isMobile ? "44px" : isDesktop ? "64px" : "48px",
-        alignItems: "center",
+          ? "82px 20px 48px"
+          : "92px 28px 64px",
+        textAlign: "center",
+        overflow: "visible",
       }}>
-        {!isMobile && (
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              inset: isDesktop ? "34px 16px 18px" : "16px 8px 12px",
-              borderRadius: isDesktop ? "26px" : "18px",
-              border: `1px solid ${dark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.06)"}`,
-              background: dark
-                ? "linear-gradient(135deg,rgba(37,99,235,0.08),rgba(255,255,255,0.015))"
-                : "linear-gradient(135deg,rgba(219,234,254,0.45),rgba(255,255,255,0.88))",
-              boxShadow: isDesktop ? "0 20px 48px rgba(2,6,23,0.14)" : "0 10px 28px rgba(2,6,23,0.1)",
-              pointerEvents: "none",
-            }}
-          />
-        )}
-        {/* — Text — */}
-        <div style={{ position: "relative", zIndex: 1, animation: "fadeUp 0.7s ease forwards", textAlign: isMobile ? "center" : "left" }}>
+        {/* Background ambient glow */}
+        <div aria-hidden style={{
+          position: "absolute", top: "-60px", left: "50%", transform: "translateX(-50%)",
+          width: isMobile ? "340px" : "600px",
+          height: isMobile ? "340px" : "500px",
+          background: dark
+            ? "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(37,99,235,0.12) 0%, rgba(124,58,237,0.05) 45%, transparent 70%)"
+            : "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(37,99,235,0.07) 0%, rgba(124,58,237,0.04) 45%, transparent 70%)",
+          filter: "blur(60px)", pointerEvents: "none",
+          animation: "heroGlow 10s ease-in-out infinite",
+        }} />
 
-          {/* Live badge */}
+        {/* ── Text content — always centered ── */}
+        <div style={{ position: "relative", zIndex: 2 }}>
+
+          {/* Badge */}
           <div style={{
             display: "inline-flex", alignItems: "center", gap: "7px",
-            marginBottom: "20px",
-            background: dark ? "rgba(37,99,235,0.08)" : "rgba(37,99,235,0.06)",
-            border: "1px solid rgba(37,99,235,0.2)",
-            borderRadius: "20px", padding: "5px 12px",
+            marginBottom: "24px",
+            background: dark ? "rgba(37,99,235,0.1)" : "rgba(37,99,235,0.06)",
+            border: "1px solid rgba(37,99,235,0.22)",
+            borderRadius: "20px", padding: "5px 12px 5px 8px",
+            animation: "badgePop 0.6s ease forwards",
           }}>
-            <div style={{ width: "5.5px", height: "5.5px", borderRadius: "50%", background: "#22C55E", animation: "pulse 2s infinite" }} />
-            <span style={{ fontSize: "10.5px", fontWeight: 600, color: "#3B82F6", letterSpacing: "0.04em" }}>NOW ACCEPTING EARLY ACCESS</span>
+            <div style={{
+              width: "16px", height: "16px", borderRadius: "50%",
+              background: "linear-gradient(135deg,#22C55E,#16A34A)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: "0 0 6px rgba(34,197,94,0.4)",
+            }}>
+              <span style={{ fontSize: "8px" }}>✦</span>
+            </div>
+            <span style={{ fontSize: "10px", fontWeight: 700, color: "#3B82F6", letterSpacing: "0.04em" }}>
+              {isMobile ? "EARLY ACCESS" : "EARLY ACCESS · 4,200+ BRANDS"}
+            </span>
           </div>
 
           {/* H1 */}
           <h1 style={{
             fontFamily: "'Fraunces', serif", fontWeight: 700,
-            fontSize: isMobile ? "30px" : isTablet ? "38px" : "58px",
-            lineHeight: isDesktop ? 1.03 : 1.09, letterSpacing: isDesktop ? "-0.034em" : "-0.03em",
-            color: text, marginBottom: "16px",
+            fontSize: isMobile ? "36px" : "44px",
+            lineHeight: 1.05, letterSpacing: "-0.035em",
+            color: text, marginBottom: "18px",
           }}>
-            The Operating System
-            <br />
-            <span style={{ background: "linear-gradient(135deg,#2563EB,#60A5FA)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              for Scaling Commerce
-            </span>{" "}Brands.
+            <span style={{
+              display: "block",
+              animation: "slideUp 0.7s ease forwards",
+              opacity: 0, animationDelay: "0.1s", animationFillMode: "forwards",
+            }}>
+              Your Store, CRM &
+            </span>
+            <span style={{
+              display: "block",
+              animation: "slideUp 0.7s ease forwards",
+              opacity: 0, animationDelay: "0.25s", animationFillMode: "forwards",
+            }}>
+              Payments —{" "}
+              <span style={{
+                background: "linear-gradient(90deg,#2563EB,#7C3AED,#EC4899,#2563EB)",
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                animation: "gradientFlow 4s linear infinite",
+              }}>
+                All in One
+              </span>
+            </span>
           </h1>
 
           {/* Sub */}
           <p style={{
-            fontSize: isMobile ? "13.5px" : isDesktop ? "16px" : "15px",
+            fontSize: isMobile ? "14px" : "15px",
             lineHeight: 1.74, color: muted,
-            maxWidth: isDesktop ? "560px" : "490px",
-            margin: isMobile ? "0 auto 26px" : "0 0 26px",
+            maxWidth: "490px",
+            margin: "0 auto 24px",
+            animation: "slideUp 0.7s ease forwards",
+            opacity: 0, animationDelay: "0.45s", animationFillMode: "forwards",
           }}>
-            Debby unifies storefronts, CRM, billing, automation, and analytics into one powerful infrastructure layer. Stop stacking tools. Start owning your operations.
+            One platform for your store, CRM, payments, and automation. Launch in 60&nbsp;seconds. Scale to millions.
           </p>
 
           {/* Form */}
-          <div style={{ marginBottom: "13px" }}>
-            <EmailForm dark={dark} label="Join the Waitlist" {...waitlistProps} />
-          </div>
-
-          {/* Secondary CTA */}
-          <div style={{ display: "flex", justifyContent: isMobile ? "center" : "flex-start" }}>
-            <a href="#early-access" style={{
-              display: "inline-flex", alignItems: "center", gap: "6px",
-              padding: "9px 15px", borderRadius: "9px",
-              border: `1.5px solid ${border}`, color: muted,
-              textDecoration: "none", fontSize: "12.5px", fontWeight: 500,
-              background: dark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)",
-            }}>
-              {icons.arrow} Request Early Access
-            </a>
-          </div>
-
-          {/* Stats */}
-          <div style={{
-            marginTop: isDesktop ? "34px" : "30px",
-            display: isDesktop ? "grid" : "flex",
-            gridTemplateColumns: isDesktop ? "repeat(3,minmax(0,1fr))" : undefined,
-            gap: isDesktop ? "10px" : "24px",
-            flexWrap: isDesktop ? undefined : "wrap",
-            justifyContent: isMobile ? "center" : "flex-start",
-            paddingTop: isDesktop ? 0 : "26px",
-            borderTop: isDesktop ? "none" : `1px solid ${border}`,
+          <div id={isMobile ? "waitlist" : undefined} style={{
+            maxWidth: "440px", margin: "0 auto 14px",
+            animation: "slideUp 0.7s ease forwards",
+            opacity: 0, animationDelay: "0.6s", animationFillMode: "forwards",
           }}>
-            {[["4,200+","Brands on waitlist"],["$2.1B+","GMV targeted"],["47","Countries"]].map(([stat, lbl]) => (
-              <div key={stat} style={{
-                textAlign: isMobile ? "center" : "left",
-                ...(isDesktop
-                  ? {
-                      padding: "12px 14px",
-                      borderRadius: "12px",
-                      border: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}`,
-                      background: dark ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.86)",
-                    }
-                  : {}),
-              }}>
-                <div style={{ fontWeight: 800, fontSize: isDesktop ? "24px" : "19px", color: text, fontFamily: "'Fraunces',serif", letterSpacing: "-0.02em" }}>{stat}</div>
-                <div style={{ fontSize: "11px", color: muted, marginTop: "2px", letterSpacing: "0.02em" }}>{lbl}</div>
-              </div>
-            ))}
+            <EmailForm dark={dark} label="Get Early Access →" {...waitlistProps} />
+          </div>
+
+          {/* Trust line */}
+          <div style={{
+            display: "flex", alignItems: "center", gap: "8px",
+            justifyContent: "center",
+            animation: "slideUp 0.7s ease forwards",
+            opacity: 0, animationDelay: "0.75s", animationFillMode: "forwards",
+          }}>
+            <span style={{ color: "#22C55E", flexShrink: 0 }}>{icons.check}</span>
+            <span style={{ fontSize: "11.5px", color: muted }}>No credit card · Free during beta · Cancel anytime</span>
           </div>
         </div>
 
-        {/* — Devices — on mobile this stacks below the text */}
+        {/* ── Device showcase ── */}
         <div style={{
-          position: "relative",
-          zIndex: 1,
-          animation: "fadeUp 0.7s ease 0.16s both",
-          ...(isDesktop
-            ? {
-                padding: "22px 18px 16px",
-                borderRadius: "20px",
-                border: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.07)"}`,
-                background: dark ? "rgba(255,255,255,0.015)" : "rgba(255,255,255,0.92)",
-                boxShadow: "0 16px 36px rgba(2,6,23,0.14)",
-              }
-            : {}),
+          position: "relative", zIndex: 1,
+          marginTop: isMobile ? "40px" : "48px",
+          animation: "slideUp 0.85s ease forwards",
+          opacity: 0, animationDelay: "0.5s", animationFillMode: "forwards",
         }}>
           {isMobile
             ? <MobileDevice dark={dark} />
-            : <DesktopDevices dark={dark} large={isDesktop} />
+            : <DesktopDevices dark={dark} />
           }
+        </div>
+
+        {/* ── Stats row ── */}
+        <div style={{
+          display: "flex", gap: isMobile ? "16px" : "24px",
+          flexWrap: "wrap", justifyContent: "center",
+          marginTop: isMobile ? "28px" : "36px",
+          paddingTop: "24px",
+          borderTop: `1px solid ${border}`,
+          animation: "slideUp 0.7s ease forwards",
+          opacity: 0, animationDelay: "0.95s", animationFillMode: "forwards",
+        }}>
+          {[["4,200+","Brands waiting"],["$2.1B+","GMV targeted"],["47","Countries"]].map(([stat, lbl]) => (
+            <div key={stat} style={{ textAlign: "center", minWidth: isMobile ? "80px" : "auto" }}>
+              <div style={{ fontWeight: 800, fontSize: isMobile ? "18px" : "21px", color: text, fontFamily: "'Fraunces',serif", letterSpacing: "-0.02em" }}>{stat}</div>
+              <div style={{ fontSize: "11px", color: muted, marginTop: "2px", letterSpacing: "0.02em" }}>{lbl}</div>
+            </div>
+          ))}
         </div>
       </section>
 )}
@@ -1725,7 +1808,7 @@ export default function App() {
           </div>
           <span style={{ fontWeight: 800, fontSize: "14.5px", letterSpacing: "-0.02em", color: text }}>debby</span>
         </div>
-        <div style={{ fontSize: "11.5px", color: muted }}>© 2025 Debby Technologies Inc.</div>
+        <div style={{ fontSize: "11.5px", color: muted }}>© 2026 Debby Technologies Inc.</div>
         <div style={{ display: "flex", gap: "16px" }}>
           {["Privacy","Terms","Security"].map(l => (
             <a key={l} href="#" style={{ fontSize: "11.5px", color: muted, textDecoration: "none" }}>{l}</a>
